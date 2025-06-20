@@ -62,7 +62,7 @@ For your first milestone, describe what your project is and how you plan to buil
 
 ***WHAT'S NEXT:*** Now that I've finished my starter project, I can look forward to working on my intensive project: building a human following robot. My immediate next steps are testing all the components of it, such as the sensors and motors, as well as gaining a better understanding of the ARDUINO coding software.
 
-(508673719_1128591945751074_7471739752642957650_n.jpg)
+![Headstone Image](508673719_1128591945751074_7471739752642957650_n.jpg)
 
 <!--# Schematics 
 Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
