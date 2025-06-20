@@ -1,11 +1,11 @@
 # Human Following Robot
 This portfolio follows my progress over the summer as I worked on numerous projects. It tracks the numerous challenges I had to overcome and notes the milestones I hit. I started my summer by putting together a retro tetris arcade console, which was a simple yet tedious task as it required much soddering. For my intensive project, I built and programmed a robot designed to follow hand gestures and cues.
 
-You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:
+<!--You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:-->
 ```HTML 
 <!--- This is an HTML comment in Markdown -->
 <!--- Anything between these symbols will not render on the published site -->
-```
+``` 
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
