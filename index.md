@@ -39,7 +39,7 @@ For your second milestone, explain what you've worked on since your previous mil
 - Technical details of what you've accomplished and how they contribute to the final goal
 - What has been surprising about the project so far
 - Previous challenges you faced that you overcame
-- What needs to be completed before your final milestone 
+- What needs to be completed before your final milestone -->
 
 # First Milestone
 
@@ -47,11 +47,173 @@ For your second milestone, explain what you've worked on since your previous mil
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CaCazFBhYKs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-For your first milestone, describe what your project is and how you plan to build it. You can include:
-- An explanation about the different components of your project and how they will all integrate together
-- Technical progress you've made so far
-- Challenges you're facing and solving in your future milestones
-- What your plan is to complete your project -->
+My intensive project is a robot on wheels that can follow you around. I'm relatively inexperienced in the robotics field, so I began my project by testing several parts and their corresponding programs for my first milestone in order to gain a greater understanding of them.
+
+***LED LIGHTS:*** For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash.
+- SCHEMATICS: 
+- CODE: 
+```
+//naming the pin the LED light is plugged into
+const int ledPin = 9;
+
+void setup()
+{
+  //initialize the digital pin as an output
+  pinMode(ledPin,OUTPUT);
+}
+
+//the loop routine runs over and over again forever
+void loop()
+{
+  digitalWrite(ledPin,HIGH);//turn the LED on 
+  delay(500);               //wait for half a second (number corresponds miliseconds)
+  digitalWrite(ledPin,LOW); //turn the LED off
+  delay(500);               //wait for half a second
+}
+```
+- What your plan is to complete your project
+
+***BUZZER:*** The next project sought to find out how the buzzer worked. The setup of the two projects, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function).
+- SCHEMATICS: 
+
+- CODE:
+```
+//naming the pin the buzzer is plugged into (the pin doesn't necessarily need to be a specific name, as long as the code # corresponds to the circuit's pin #  being used)
+const int buzzerPin = 8;
+
+void setup()
+{
+  pinMode(buzzerPin, OUTPUT);
+}
+
+void loop()
+{
+    digitalWrite(buzzerPin, HIGH);
+    delay(1000);
+    digitalWrite(buzzerPin, LOW);
+    delay(1000);                  //time doesn't have to be different from LED, just a suggestion since it's loud :)
+  }
+```
+
+***WHEEL MOTOR:*** While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. The motor itself had two wires that required a screwdrier in order to be plugged into the motor module.
+- SCHEMATICS: 
+- CODE:
+```
+const int B_1A = 9;
+const int B_1B = 10;
+
+void setup()
+{
+  pinMode(B_1A, OUTPUT);
+  pinMode(B_1B, OUTPUT);
+}
+
+void loop()
+{
+  //rotates motor clockwise
+  digitalWrite(B_1A, HIGH);
+  digitalWrite(B_1B, LOW);
+  delay(2000);
+
+  //stops motor
+  digitalWrite(B_1A, LOW);
+  digitalWrite(B_1B, LOW);
+  delay(500);
+
+  //rotates motor counterclockwise
+  digitalWrite(B_1A, LOW);
+  digitalWrite(B_1B, HIGH);
+  delay(2000);
+
+  //stops motor (again)
+  digitalWrite(B_1A, LOW);
+  digitalWrite(B_1B, LOW);
+  delay(500);
+}
+```
+
+***SERVO MOTOR:**** While the previous motor is designed for simpler functions like rotating a wheel, this motor could control the angle it rotated (from 0-180°) in order to control a servo arm. However, I did need to include the Servo.h library to run the code.
+- SCHEMATICS:
+- CODE:
+```
+#include <Servo.h>
+
+Servo myservo;//create servo object to control a servo
+
+void setup()
+{
+  myservo.attach(9);//attachs the servo on pin 15 to servo object
+  myservo.write(0);//back to 0 degrees
+  delay(1000);//wait for a second
+}
+
+void loop()
+{
+  for (int i = 0; i <= 180; i++)
+  {
+    myservo.write(i); //write the i angle to the servo
+    delay(15); //delay 15ms
+  }
+  for (int i = 180; i >= 0; i--)
+  {
+    myservo.write(i); //write the i angle to the servo
+    delay(15); //delay 15ms
+  }
+}
+```
+
+***IR OBSTACLE AVOIDANCE:*** This sensor detects obstacles by transmitting IR rays and receives them when a surface (of an object) reflects them back. If you opened the serial monitor, a 1 would correspond with no nearby object while a 0 would alert you of one. 
+
+- SCHEMATICS:
+- CODE:
+```
+int irObstaclePin = 2;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(irObstaclePin, INPUT);
+}
+
+void loop() {
+  Serial.println(digitalRead(irObstaclePin));
+  delay(10);
+}
+```
+
+***ULTRASONIC SENSOR:*** This works similar to the IR sensor, but instead uses ultrasonic frequencies in order to detect how far objects.
+
+- SCHEMATICS:
+- CODE:
+```
+const int echoPin = 3;
+const int trigPin = 4;
+
+
+void setup(){
+  Serial.begin(9600);
+  pinMode(echoPin, INPUT);
+  pinMode(trigPin, OUTPUT);
+  Serial.println("Ultrasonic sensor:");  
+}
+
+void loop(){
+  float distance = readSensorData();
+  Serial.print(distance);   
+  Serial.println(" cm");
+  delay(400);
+}
+
+float readSensorData(){
+  digitalWrite(trigPin, LOW); 
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH); 
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);  
+  float distance = pulseIn(echoPin, HIGH)/58.00;  //Equivalent to (340m/s*1us)/2
+  return distance;
+}
+```
+ 
 
  # Starter Project
 ***DESCRIPTION:*** In preperation for the hardware aspects of my intensive projects, I warmed up by putting together a retro arcade console designed to play numerous games of tetris. It can be powered by either batteries or your laptop by connecting it via the USB socket. You then start a game by turning on the red power button and pressing the yellow button labeled with a square. The game is displayed on the dot matrix, and the pieces can be controlled by the four buttons labeled with arrows. While you play, the digital cube keeps track of your score, and the buzzer provides sound effects/music. The game can be ended with the button labeled X, pressing the power button, or disconnecting the power source. Every component was soddered on, and the non-electrical parts were screwed together.
