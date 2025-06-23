@@ -50,7 +50,7 @@ For your second milestone, explain what you've worked on since your previous mil
 My intensive project is a robot on wheels that can follow you around. I'm relatively inexperienced in the robotics field, so I began my project by testing several parts and their corresponding programs for my first milestone in order to gain a greater understanding of them. I used the ARDUINO R3 circuitboard with jumpwires for all of these tests.
 
 ***LED LIGHTS:*** For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash.
-- SCHEMATICS: ![Headstone Image] (wiring_led1.webp)
+- SCHEMATICS: ![Headstone Image] (logo.svg)
 - CODE: 
 ```
 //naming the pin the LED light is plugged into
