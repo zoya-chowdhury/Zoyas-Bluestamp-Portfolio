@@ -50,7 +50,8 @@ For your second milestone, explain what you've worked on since your previous mil
 My intensive project is a robot on wheels that can follow you around. I'm relatively inexperienced in the robotics field, so I began my project by testing several parts and their corresponding programs for my first milestone in order to gain a greater understanding of them. I used the ARDUINO R3 circuitboard with jumpwires for all of these tests.
 
 ***LED LIGHTS:*** For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash.
-- SCHEMATICS: ![Headstone Image](wiring_led1.webp)
+- SCHEMATICS:
+  ![Headstone Image](wiring_led1.webp)
 - CODE: 
 ```
 //naming the pin the LED light is plugged into
@@ -74,7 +75,8 @@ void loop()
 - What your plan is to complete your project
 
 ***BUZZER:*** The next project sought to find out how the buzzer worked. The setup of the two projects, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function).
-- SCHEMATICS: ![Headstone Image](wiring_active_buzzer.webp)
+- SCHEMATICS:
+  ![Headstone Image](wiring_active_buzzer.webp)
 
 - CODE:
 ```
@@ -96,7 +98,8 @@ void loop()
 ```
 
 ***WHEEL MOTOR:*** While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. The motor itself had two wires that required a screwdrier in order to be plugged into the motor module.
-- SCHEMATICS: ![Headstone Image](wheel_motor.webp)
+- SCHEMATICS:
+  ![Headstone Image](wheel_motor.webp)
 - CODE:
 ```
 const int B_1A = 9;
@@ -133,7 +136,8 @@ void loop()
 ```
 
 ***SERVO MOTOR:**** While the previous motor is designed for simpler functions like rotating a wheel, this motor could control the angle it rotated (from 0-180°) in order to control a servo arm. However, I did need to include the Servo.h library to run the code.
-- SCHEMATICS: ![Headstone Image](swinging_servo_bb.jpg)
+- SCHEMATICS:
+  ![Headstone Image](swinging_servo_bb.jpg)
 - CODE:
 ```
 #include <Servo.h>
@@ -164,7 +168,8 @@ void loop()
 
 ***IR OBSTACLE AVOIDANCE:*** This sensor detects obstacles by transmitting IR rays and receives them when a surface (of an object) reflects them back. If you opened the serial monitor, a 1 would correspond with no nearby object while a 0 would alert you of one. 
 
-- SCHEMATICS: ![Headstone Image](detect_the_obstacle_bb.jpg)
+- SCHEMATICS:
+   ![Headstone Image](detect_the_obstacle_bb.jpg)
 
 - CODE:
 ```
@@ -183,7 +188,8 @@ void loop() {
 
 ***ULTRASONIC SENSOR:*** This works similar to the IR sensor, but instead uses ultrasonic frequencies in order to detect how far objects.
 
-- SCHEMATICS: ![Headstone Image](ultrasonic_bb.jpg)
+- SCHEMATICS:
+  ![Headstone Image](ultrasonic_bb.jpg)
 - CODE:
 ```
 const int echoPin = 3;
