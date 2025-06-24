@@ -99,7 +99,7 @@ void loop()
   }
 ```
 
-***WHEEL MOTOR:*** While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. The motor itself had two wires that required a screwdrier in order to be plugged into the motor module.
+***MOTOR:*** While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. The motor itself had two wires that required a screwdrier in order to be plugged into the motor module.
 - SCHEMATICS:
 
   ![Headstone Image](wheel_motor.webp)
@@ -138,37 +138,6 @@ void loop()
 }
 ```
 
-***SERVO MOTOR:**** While the previous motor is designed for simpler functions like rotating a wheel, this motor could control the angle it rotated (from 0-180°) in order to control a servo arm. However, I did need to include the Servo.h library to run the code.
-- SCHEMATICS:
-
-   ![Headstone Image](swinging_servo_bb.jpg)
-- CODE:
-```
-#include <Servo.h>
-
-Servo myservo;//create servo object to control a servo
-
-void setup()
-{
-  myservo.attach(9);//attachs the servo on pin 15 to servo object
-  myservo.write(0);//back to 0 degrees
-  delay(1000);//wait for a second
-}
-
-void loop()
-{
-  for (int i = 0; i <= 180; i++)
-  {
-    myservo.write(i); //write the i angle to the servo
-    delay(15); //delay 15ms
-  }
-  for (int i = 180; i >= 0; i--)
-  {
-    myservo.write(i); //write the i angle to the servo
-    delay(15); //delay 15ms
-  }
-}
-```
 
 ***IR OBSTACLE AVOIDANCE:*** This sensor detects obstacles by transmitting IR rays and receives them when a surface (of an object) reflects them back. If you opened the serial monitor, a 1 would correspond with no nearby object while a 0 would alert you of one. 
 
