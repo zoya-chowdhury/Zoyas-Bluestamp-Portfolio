@@ -169,7 +169,7 @@ void loop() {
 
    ![Headstone Image](ultrasonic_bb.jpg)
 - CODE:
-```
+```HTML
 const int echoPin = 3;
 const int trigPin = 4;
 
