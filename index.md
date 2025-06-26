@@ -77,7 +77,6 @@ void loop()
   delay(500);               //wait for half a second
 }
 ```
-- What your plan is to complete your project
 
 ***BUZZER:*** The next project sought to find out how the buzzer worked. The setup of the two projects, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function).
 - SCHEMATICS:
