@@ -56,7 +56,8 @@ My intensive project is a robot on wheels that can follow you around. I'm relati
 - SCHEMATICS:
 
   ![Headstone Image](wiring_led1.webp)
-- CODE: 
+- CODE:
+  
 ```HTML
 //naming the pin the LED light is plugged into
 const int ledPin = 9;
