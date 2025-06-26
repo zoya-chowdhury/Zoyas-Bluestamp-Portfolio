@@ -85,7 +85,7 @@ void loop()
    ![Headstone Image](wiring_active_buzzer.webp)
 
 - CODE:
-```
+```HTML
 //naming the pin the buzzer is plugged into (the pin doesn't necessarily need to be a specific name, as long as the code # corresponds to the circuit's pin #  being used)
 const int buzzerPin = 8;
 
@@ -108,7 +108,7 @@ void loop()
 
   ![Headstone Image](wheel_motor.webp)
 - CODE:
-```
+```HTML
 const int B_1A = 9;
 const int B_1B = 10;
 
@@ -150,7 +150,7 @@ void loop()
    ![Headstone Image](detect_the_obstacle_bb.jpg)
 
 - CODE:
-```
+```HTML
 int irObstaclePin = 2;
 
 void setup() {
