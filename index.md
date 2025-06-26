@@ -57,7 +57,7 @@ My intensive project is a robot on wheels that can follow you around. I'm relati
 
   ![Headstone Image](wiring_led1.webp)
 - CODE: 
-```
+```HTML
 //naming the pin the LED light is plugged into
 const int ledPin = 9;
 
