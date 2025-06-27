@@ -18,7 +18,7 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 # Final Milestone: Coding
 
 **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**                       
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F7M7imOVGug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 To wrap up this project, I had to implement the code in order to make it follow my hand. I had to make sure all the pins matched up and all the signals were read and interpreted properly. Since they're all very close together on the circuitboard, it's also very easy to misalign them physically. The trickiest part was probably debugging due to the sheer amount of instructions and wires. I debugged using the serial monitor to print out what it read from the sensors in order to figure out which sensors were working and which ones didn't. After I figured out which sensors and/or commands weren't working, I had to make sure each and every one of its wires, as well as its parts (eg. for the IR sensor, the transmitters and receivers might need to be tweaked) were working and plugged in correctly. One obstacle was that for female-female jumpwires, the one with rectangular ends as opposed to the rounded ones tend to be more reliable. While debugging, I noticed the rounded ends were causing power issues for the sensors. The rectangular ending wires stay in place better and they also plug in all the way properly. However, it's important to be aware that their ends are more flexible, so they can also snap off more easily (which did happen when attaching the motor wires during milestone #2). Now that I know how to build and code these parts, as well as fix their issues when they arise, I would like the modify the robot to be able to detect when I am behind it to either back up or turn around to continue following me. 
 
 For your final milestone, explain the outcome of your project. Key details to include are:
@@ -31,17 +31,13 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 # Second Milestone: Wiring/Construction
 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_HQk5TEfqqU?si=OVDXH_HZc7iBxnF8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_HQk5TEfqqU?si=H7X6gfRgMYlOd3nm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 To reach this milestone, I had to put the actual robot together. This consisted mostly of screwing parts to the robot's acrylic board and then wiring all of them to the breadboard and/or the ADRUINO circuitboard I attached. To me, this project has really helped made coding and robotics less intimidating. It has showed me how simple it can be when you break all the processes into smaller, more digestable steps. There were no serious complications, but I did have to sodder one of the wires for the motor because it had snapped. The most frustrating part of this process came from screwing everything to the wrong side, meaning I had to start from scratch. Additiionally, the screws are on the smaller side, and without a wrench, it could be challenging trying to hand fix the nuts and standoffs. The wiring was pretty simple, but I needed to be careful that they were long enough and that they weren't too entangled. It's also important to make sure the ground wasn't accidentally attached to the power as they were very close together on the breadboard. Now that I've completed wiring and construction, I need to figure out and test the codes in order to make the robot work.
 
 # First Milestone: Testing Components
 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/xC3nwDxYMC0?si=RoahzrhIJZQaFLBN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CAFV6XYA0hU?si=x979owAFFp9I4_uh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 My intensive project is a robot on wheels that can follow you around. I'm relatively inexperienced in the robotics field, so I began my project by testing several parts and their corresponding programs for my first milestone in order to gain a greater understanding of them. I began by watching several videos on the ARDUINO circuitboard and how its software runs before I moved onto more hands-on projects, using the ARDUINO R3 circuitboard with jumpwires for all of them. This was pretty straightforward and simple, but I did sometimes run into some difficulties with the fragility of the adapter, especially when I wanted to run all the projects all at once. To fix this, I'd need to unplug the adapter and USB cable several times until the ARDUINO board connected to my laptop properly. Now that I've reached this milestone, I need to build the robot and attach all the wires to connect all the parts together in order to achieve my second one.
 
@@ -198,7 +194,10 @@ float readSensorData(){
  
 
  # Starter Project
+
  ![Headstone Image](Tetris_Schematics.png)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xC3nwDxYMC0?si=Qx-B4X6S6Iq_OcWs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
  
 ***DESCRIPTION:*** In preperation for the hardware aspects of my intensive projects, I warmed up by putting together a retro arcade console designed to play numerous games of tetris. It can be powered by either batteries or your laptop by connecting it via the USB socket. You then start a game by turning on the red power button and pressing the yellow button labeled with a square. The game is displayed on the dot matrix, and the pieces can be controlled by the four buttons labeled with arrows. While you play, the digital cube keeps track of your score, and the buzzer provides sound effects/music. The game can be ended with the button labeled X, pressing the power button, or disconnecting the power source. Every component was soddered on, and the non-electrical parts were screwed together.
 
