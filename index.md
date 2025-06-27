@@ -287,7 +287,7 @@ void moveBackward(int speed) {
   analogWrite(A_1A, 0);
   analogWrite(B_1B, 0);
   analogWrite(B_1A, speed);
- Serialprint.ln("Backward") //for debugging, shows motor is moving correctly and sensor     is being read correctly; will print Backward when moving backward
+ Serialprint.ln("Backward") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Backward when moving backward
 }
 
 void turnRight(int speed) {
