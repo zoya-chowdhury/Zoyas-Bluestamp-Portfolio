@@ -15,14 +15,6 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 
 To wrap up this project, I had to implement the code in order to make it follow my hand. I had to make sure all the pins matched up and all the signals were read and interpreted properly. Since they're all very close together on the circuitboard, it's also very easy to misalign them physically. The trickiest part was probably debugging due to the sheer amount of instructions and wires. I debugged using the serial monitor to print out what it read from the sensors in order to figure out which sensors were working and which ones didn't. After I figured out which sensors and/or commands weren't working, I had to make sure each and every one of its wires, as well as its parts (eg. for the IR sensor, the transmitters and receivers might need to be tweaked) were working and plugged in correctly. One obstacle was that for female-female jumpwires, the one with rectangular ends as opposed to the rounded ones tend to be more reliable. While debugging, I noticed the rounded ends were causing power issues for the sensors. The rectangular ending wires stay in place better and they also plug in all the way properly. However, it's important to be aware that their ends are more flexible, so they can also snap off more easily (which did happen when attaching the motor wires during milestone #2). Now that I know how to build and code these parts, as well as fix their issues when they arise, I would like the modify the robot to be able to detect when I am behind it to either back up or turn around to continue following me. 
 
-For your final milestone, explain the outcome of your project. Key details to include are:
-- What you've accomplished since your previous milestone
-- What your biggest challenges and triumphs were at BSE
-- A summary of key topics you learned about
-- What you hope to learn in the future after everything you've learned at BSE-->
-
-
-
 # Second Milestone: Wiring/Construction
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_HQk5TEfqqU?si=H7X6gfRgMYlOd3nm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
