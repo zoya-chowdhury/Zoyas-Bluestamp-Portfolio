@@ -203,7 +203,7 @@ void loop()
 ***MOTOR:*** While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. The motor itself had two wires that required a screwdrier in order to be plugged into the motor module.
 - SCHEMATICS:
 
-   <img src="wheel_motor.webp" width="751.5" height="389" />
+   <img src="wheel_motor.webp" width="676.35" height="350.1" />
 - CODE:
   
 ```HTML
@@ -245,7 +245,7 @@ void loop()
 
 - SCHEMATICS:
 
-   <img src="detect_the_obstacle_bb.jpg" width="690" height="291" />
+   <img src="detect_the_obstacle_bb.jpg" width="621" height="261.9" />
 
 - CODE:
   
@@ -267,7 +267,7 @@ void loop() {
 
 - SCHEMATICS:
 
-   <img src="ultrasonic_bb.jpg" width="432" height="445.5" />
+   <img src="ultrasonic_bb.jpg" width="388.8" height="400.95" />
 - CODE:
   
 ```HTML
