@@ -178,7 +178,7 @@ void loop()
 ***BUZZER:*** The next project sought to find out how the buzzer worked. The setup of the two projects, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function).
 - SCHEMATICS:
 
-   ![Headstone Image](wiring_active_buzzer.webp)
+   <img src="wiring_active_buzzer.webp" width="272" height="388" />
 
 - CODE:
   
@@ -203,7 +203,7 @@ void loop()
 ***MOTOR:*** While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. The motor itself had two wires that required a screwdrier in order to be plugged into the motor module.
 - SCHEMATICS:
 
-  ![Headstone Image](wheel_motor.webp)
+   <img src="wheel_motor.webp" width="375.75" height="194.5" />
 - CODE:
   
 ```HTML
@@ -245,7 +245,7 @@ void loop()
 
 - SCHEMATICS:
 
-   ![Headstone Image](detect_the_obstacle_bb.jpg)
+   <img src="detect_the_obstacle_bb.jpg" width="460" height="194" />
 
 - CODE:
   
@@ -267,7 +267,7 @@ void loop() {
 
 - SCHEMATICS:
 
-   ![Headstone Image](ultrasonic_bb.jpg)
+   <img src="ultrasonic_bb.jpg" width="432" height="445.5" />
 - CODE:
   
 ```HTML
