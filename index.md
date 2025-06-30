@@ -9,11 +9,129 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 
 ![Headstone Image]()-->
   
+# Modification #1: Detecting Edges
+When initially testing the robot's ability to follow your hand, one thing I would always need to be careful of is to make sure I wouldn't accidentally lead it off the table. As a result, I wanted my first modification to be adding a sensor to ensure it would stop before any cliffs, even if it sensed your hand. After all, what's good is a pet robot with no survival instincts? One of the major challenges was that this modification was completely my own design. This meant I would have to figure out how and what sensor to add and how to code it. What made it even more difficult was that prior to this program, I had no coding or circuit-building experience. This meant any coding I did was based off patterns I had noticed from the code I had already been using. The same was true for the wiring. The sensor I decided to go with was the IR sensor, which I tweaked slightly to be facing the ground. For the code, I modified it by instructing the robot to stop if this new sensor didn't detect anything below it; the robot could not carry out it's steering commands (left, right, forward), even if it detected something nearby, so long as there was some sort of edge before it. 
+
+```c++
+//assigining motor pins
+const int A_1B = 5;
+const int A_1A = 6;
+const int B_1B = 9;
+const int B_1A = 10;
+
+//MODIFIATION: assigning IR edge pin
+const int bottomIR=2;
+
+//assigning IR obstacle pins
+const int rightIR=7;
+const int leftIR=8;
+
+//assigning ultrasonic pins
+const int trigPin = 3;
+const int echoPin = 4;
+
+void setup() {
+  Serial.begin(9600);
+
+  //defining motor pins
+  pinMode(A_1B, OUTPUT);
+  pinMode(A_1A, OUTPUT);
+  pinMode(B_1B, OUTPUT);
+  pinMode(B_1A, OUTPUT);
+
+  //MODIFICATION: defining bottomIR pin
+  pinMode(bottomIR,INPUT);
+
+ //defining IR obstacle pins
+  pinMode(leftIR,INPUT);
+  pinMode(rightIR,INPUT);
+  
+  //defining ultrasonic pins
+  pinMode(echoPin, INPUT);
+  pinMode(trigPin, OUTPUT);
+}
+
+void loop() {
+//assigning motor instructions to interpretations of IR Obstacle sensor information
+  float distance = readSensorData();
+    //for debugging, shows how far object is from ultrasonic sensor
+    Serial.print(distance);
+    Serialprintln("cm");
+  delay(100);
+
+  int left = digitalRead(leftIR);    // 0: Obstructed   1: Empty
+  int right = digitalRead(rightIR);
+  int edge = digitalRead(bottomIR);  //MODIFICATION: assigning motor instructions to interpreted bottom sensor data
+  int speed = 150;
+  Serial.println (left); //for debugging, shows left sensor is working (will print 0 or 1 as instructed)
+  Serial.println (right); //for debugging, shows right sensor is working (will print 0 or 1 as instructed)
+
+//MODIFICATION: prioritizing stopping if edge detected + requiring all instructions to only work if the sensor can detect something below it
+if (edge){                                 //MODIFICATION: 1st priority: robot stops if                                                             no ground detected below it
+    stopMove();
+    Serial.println(edge);                 //MODIFICATION: prints edge on serial monitor                                                            if command works for debugging
+  }else if (distance>5 && distance<20){
+    moveForward(speed);
+  }else if(!left&&right&&!edge){          //MODIFICATION: robot only turns to you if                                                               ground detected below it
+    turnLeft(speed);
+  }else if(left&&!right&&!edge){          //MODIFICATION: robot only turns to you if                                                               ground detected below it
+    turnRight(speed);   
+  }else{
+    stopMove();
+  }
+delay(100);
+}
+
+//defining ultrasonic sensor readings
+float readSensorData() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  float distance = pulseIn(echoPin, HIGH) / 58.00; //Equivalent to (340m/s*1us)/2
+  return distance;
+}
+
+//defining motor instructions
+void moveForward(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, speed);
+  analogWrite(B_1B, speed);
+  analogWrite(B_1A, 0);
+  Serialprint.ln("Forward"); //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Forward when moving forward
+}
+
+void turnRight(int speed) {
+  analogWrite(A_1B, speed);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, speed);
+  analogWrite(B_1A, 0);
+ Serialprint.ln("Right") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Right when turning right
+}
+
+void turnLeft(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, speed);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, speed);
+ Serialprint.ln("Left") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Left when moving Left
+}
+
+void stopMove() {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, 0);
+ Serialprint.ln("Stop") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Stop when stopped/stopping
+}
+```
+
 # Final Milestone: Coding
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6Max72kHgqk?si=7P0bIYm07S1jpWlh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-To wrap up this project, I had to implement the code in order to make it follow my hand. I had to make sure all the pins matched up and all the signals were read and interpreted properly. Since they're all very close together on the circuitboard, it's also very easy to misalign them physically. The trickiest part was probably debugging due to the sheer amount of instructions and wires. I debugged using the serial monitor to print out what it read from the sensors in order to figure out which sensors were working and which ones didn't. After I figured out which sensors and/or commands weren't working, I had to make sure each and every one of its wires, as well as its parts (eg. for the IR sensor, the transmitters and receivers might need to be tweaked) were working and plugged in correctly. One obstacle was that for female-female jumpwires, the one with rectangular ends as opposed to the rounded ones tend to be more reliable. While debugging, I noticed the rounded ends were causing power issues for the sensors. The rectangular ending wires stay in place better and they also plug in all the way properly. However, it's important to be aware that their ends are more flexible, so they can also snap off more easily (which did happen when attaching the motor wires during milestone #2). Now that I know how to build and code these parts, as well as fix their issues when they arise, I would like the modify the robot to be able to detect when I am behind it to either back up or turn around to continue following me. 
+To wrap up this project, I had to implement the code in order to make it follow my hand. I had to make sure all the pins matched up and all the signals were read and interpreted properly. Since they're all very close together on the circuitboard, it's also very easy to misalign them physically. The trickiest part was probably debugging due to the sheer amount of instructions and wires. I debugged using the serial monitor to print out what it read from the sensors in order to figure out which sensors were working and which ones didn't. After I figured out which sensors and/or commands weren't working, I had to make sure each and every one of its wires, as well as its parts (eg. for the IR sensor, the transmitters and receivers might need to be tweaked) were working and plugged in correctly. One obstacle was that for female-female jumpwires, the one with rectangular ends as opposed to the rounded ones tend to be more reliable. While debugging, I noticed the rounded ends were causing power issues for the sensors. The rectangular ending wires stay in place better and they also plug in all the way properly. However, it's important to be aware that their ends are more flexible, so they can also snap off more easily (which did happen when attaching the motor wires during milestone #2). Now that I know how to build and code these parts, as well as fix their issues when they arise, I would like the modify the robot to be able to detect when I am behind it to either back up or turn around to continue following me. Now that I've finished building my project, the next thing to do is add my own modifications.
 
 # Code
 <!--Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs.-->
@@ -95,14 +213,6 @@ void moveForward(int speed) {
   analogWrite(B_1B, speed);
   analogWrite(B_1A, 0);
   Serialprint.ln("Forward"); //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Forward when moving forward
-}
-
-void moveBackward(int speed) {
-  analogWrite(A_1B, speed);
-  analogWrite(A_1A, 0);
-  analogWrite(B_1B, 0);
-  analogWrite(B_1A, speed);
- Serialprint.ln("Backward") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Backward when moving backward
 }
 
 void turnRight(int speed) {
