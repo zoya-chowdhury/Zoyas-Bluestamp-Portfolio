@@ -52,13 +52,14 @@ void setup() {
 }
 
 void loop() {
-//assigning motor instructions to interpretations of IR Obstacle sensor information
+//assigning motor instructions to interpretations of Ultrasonic sensor information
   float distance = readSensorData();
     //for debugging, shows how far object is from ultrasonic sensor
     Serial.print(distance);
     Serialprintln("cm");
   delay(100);
 
+//assigning motor instructions to interpretations of IR Obstacle sensor information
   int left = digitalRead(leftIR);    // 0: Obstructed   1: Empty
   int right = digitalRead(rightIR);
   int edge = digitalRead(bottomIR);  //MODIFICATION: assigning motor instructions to interpreted bottom sensor data
@@ -170,13 +171,14 @@ void setup() {
 }
 
 void loop() {
-//assigning motor instructions to interpretations of IR Obstacle sensor information
+//assigning motor instructions to interpretations of Ultrasonic sensor information
   float distance = readSensorData();
     //for debugging, shows how far object is from ultrasonic sensor
     Serial.print(distance);
     Serialprintln("cm");
   delay(100);
 
+//assigning motor instructions to interpretations of IR Obstacle sensor information
   int left = digitalRead(leftIR);  // 0: Obstructed   1: Empty
   int right = digitalRead(rightIR);
   int speed = 150;
