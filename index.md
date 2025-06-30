@@ -15,11 +15,133 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 
 To wrap up this project, I had to implement the code in order to make it follow my hand. I had to make sure all the pins matched up and all the signals were read and interpreted properly. Since they're all very close together on the circuitboard, it's also very easy to misalign them physically. The trickiest part was probably debugging due to the sheer amount of instructions and wires. I debugged using the serial monitor to print out what it read from the sensors in order to figure out which sensors were working and which ones didn't. After I figured out which sensors and/or commands weren't working, I had to make sure each and every one of its wires, as well as its parts (eg. for the IR sensor, the transmitters and receivers might need to be tweaked) were working and plugged in correctly. One obstacle was that for female-female jumpwires, the one with rectangular ends as opposed to the rounded ones tend to be more reliable. While debugging, I noticed the rounded ends were causing power issues for the sensors. The rectangular ending wires stay in place better and they also plug in all the way properly. However, it's important to be aware that their ends are more flexible, so they can also snap off more easily (which did happen when attaching the motor wires during milestone #2). Now that I know how to build and code these parts, as well as fix their issues when they arise, I would like the modify the robot to be able to detect when I am behind it to either back up or turn around to continue following me. 
 
+# Code
+<!--Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs.-->
+
+```c++
+//assigining motor pins
+const int A_1B = 5;
+const int A_1A = 6;
+const int B_1B = 9;
+const int B_1A = 10;
+
+//assigning IR obstacle pins
+const int rightIR=7;
+const int leftIR=8;
+
+//assigning ultrasonic pins
+const int trigPin = 3;
+const int echoPin = 4;
+
+void setup() {
+  Serial.begin(9600);
+
+  //defining motor pins
+  pinMode(A_1B, OUTPUT);
+  pinMode(A_1A, OUTPUT);
+  pinMode(B_1B, OUTPUT);
+  pinMode(B_1A, OUTPUT);
+
+  //defining IR obstacle pins
+  pinMode(leftIR,INPUT);
+  pinMode(rightIR,INPUT);
+  
+  //defining ultrasonic pins
+  pinMode(echoPin, INPUT);
+  pinMode(trigPin, OUTPUT);
+}
+
+void loop() {
+//assigning motor instructions to interpretations of IR Obstacle sensor information
+  float distance = readSensorData();
+    //for debugging, shows how far object is from ultrasonic sensor
+    Serial.print(distance);
+    Serialprintln("cm");
+  delay(100);
+
+  int left = digitalRead(leftIR);  // 0: Obstructed   1: Empty
+  int right = digitalRead(rightIR);
+  int speed = 150;
+  Serial.println (left); //for debugging, shows left sensor is working (will print 0 or 1 as instructed)
+  Serial.println (right); //for debugging, shows right sensor is working (will print 0 or 1 as instructed)
+
+  if (distance>5 && distance<10){
+    moveForward(speed);
+  }else if(!left&&right){
+    turnLeft(speed);
+  }else if(left&&!right){
+    turnRight(speed);
+  }else{
+    stopMove();
+  }
+delay(100);
+}
+
+//defining ultrasonic sensor readings
+float readSensorData() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  float distance = pulseIn(echoPin, HIGH) / 58.00; //Equivalent to (340m/s*1us)/2
+  return distance;
+}
+
+//defining motor instructions
+void moveForward(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, speed);
+  analogWrite(B_1B, speed);
+  analogWrite(B_1A, 0);
+  Serialprint.ln("Forward"); //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Forward when moving forward
+}
+
+void moveBackward(int speed) {
+  analogWrite(A_1B, speed);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, speed);
+ Serialprint.ln("Backward") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Backward when moving backward
+}
+
+void turnRight(int speed) {
+  analogWrite(A_1B, speed);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, speed);
+  analogWrite(B_1A, 0);
+ Serialprint.ln("Right") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Right when turning right
+}
+
+void turnLeft(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, speed);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, speed);
+ Serialprint.ln("Left") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Left when moving Left
+}
+
+void stopMove() {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, 0);
+ Serialprint.ln("Stop") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Stop when stopped/stopping
+}
+```
+
 # Second Milestone: Wiring/Construction
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_HQk5TEfqqU?si=H7X6gfRgMYlOd3nm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 To reach this milestone, I had to put the actual robot together. This consisted mostly of screwing parts to the robot's acrylic board and then wiring all of them to the breadboard and/or the ADRUINO circuitboard I attached. To me, this project has really helped made coding and robotics less intimidating. It has showed me how simple it can be when you break all the processes into smaller, more digestable steps. There were no serious complications, but I did have to sodder one of the wires for the motor because it had snapped. The most frustrating part of this process came from screwing everything to the wrong side, meaning I had to start from scratch. Additiionally, the screws are on the smaller side, and without a wrench, it could be challenging trying to hand fix the nuts and standoffs. The wiring was pretty simple, but I needed to be careful that they were long enough and that they weren't too entangled. It's also important to make sure the ground wasn't accidentally attached to the power as they were very close together on the breadboard. Now that I've completed wiring and construction, I need to figure out and test the codes in order to make the robot work.
+
+# Schematics 
+
+<!--Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser.-->
+
+![Headstone Image](Robot_Schematics.png)
+
 
 # First Milestone: Testing Components
 
@@ -193,127 +315,6 @@ float readSensorData(){
 
 ***WHAT'S NEXT:*** Now that I've finished my starter project, I can look forward to working on my intensive project: building a human following robot. My immediate next steps are testing all the components of it, such as the sensors and motors, as well as gaining a better understanding of the ARDUINO coding software.
 
-
-# Schematics 
-
-<!--Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser.-->
-
-![Headstone Image](Robot_Schematics.png)
-
-# Code
-<!--Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs.-->
-
-```c++
-//assigining motor pins
-const int A_1B = 5;
-const int A_1A = 6;
-const int B_1B = 9;
-const int B_1A = 10;
-
-//assigning IR obstacle pins
-const int rightIR=7;
-const int leftIR=8;
-
-//assigning ultrasonic pins
-const int trigPin = 3;
-const int echoPin = 4;
-
-void setup() {
-  Serial.begin(9600);
-
-  //defining motor pins
-  pinMode(A_1B, OUTPUT);
-  pinMode(A_1A, OUTPUT);
-  pinMode(B_1B, OUTPUT);
-  pinMode(B_1A, OUTPUT);
-
-  //defining IR obstacle pins
-  pinMode(leftIR,INPUT);
-  pinMode(rightIR,INPUT);
-  
-  //defining ultrasonic pins
-  pinMode(echoPin, INPUT);
-  pinMode(trigPin, OUTPUT);
-}
-
-void loop() {
-//assigning motor instructions to interpretations of IR Obstacle sensor information
-  float distance = readSensorData();
-    //for debugging, shows how far object is from ultrasonic sensor
-    Serial.print(distance);
-    Serialprintln("cm");
-  delay(100);
-
-  int left = digitalRead(leftIR);  // 0: Obstructed   1: Empty
-  int right = digitalRead(rightIR);
-  int speed = 150;
-  Serial.println (left); //for debugging, shows left sensor is working (will print 0 or 1 as instructed)
-  Serial.println (right); //for debugging, shows right sensor is working (will print 0 or 1 as instructed)
-
-  if (distance>5 && distance<10){
-    moveForward(speed);
-  }else if(!left&&right){
-    turnLeft(speed);
-  }else if(left&&!right){
-    turnRight(speed);
-  }else{
-    stopMove();
-  }
-delay(100);
-}
-
-//defining ultrasonic sensor readings
-float readSensorData() {
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  float distance = pulseIn(echoPin, HIGH) / 58.00; //Equivalent to (340m/s*1us)/2
-  return distance;
-}
-
-//defining motor instructions
-void moveForward(int speed) {
-  analogWrite(A_1B, 0);
-  analogWrite(A_1A, speed);
-  analogWrite(B_1B, speed);
-  analogWrite(B_1A, 0);
-  Serialprint.ln("Forward"); //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Forward when moving forward
-}
-
-void moveBackward(int speed) {
-  analogWrite(A_1B, speed);
-  analogWrite(A_1A, 0);
-  analogWrite(B_1B, 0);
-  analogWrite(B_1A, speed);
- Serialprint.ln("Backward") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Backward when moving backward
-}
-
-void turnRight(int speed) {
-  analogWrite(A_1B, speed);
-  analogWrite(A_1A, 0);
-  analogWrite(B_1B, speed);
-  analogWrite(B_1A, 0);
- Serialprint.ln("Right") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Right when turning right
-}
-
-void turnLeft(int speed) {
-  analogWrite(A_1B, 0);
-  analogWrite(A_1A, speed);
-  analogWrite(B_1B, 0);
-  analogWrite(B_1A, speed);
- Serialprint.ln("Left") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Left when moving Left
-}
-
-void stopMove() {
-  analogWrite(A_1B, 0);
-  analogWrite(A_1A, 0);
-  analogWrite(B_1B, 0);
-  analogWrite(B_1A, 0);
- Serialprint.ln("Stop") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Stop when stopped/stopping
-}
-```
 
 # Bill of Materials
 Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
