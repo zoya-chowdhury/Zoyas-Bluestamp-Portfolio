@@ -140,7 +140,7 @@ To reach this milestone, I had to put the actual robot together. This consisted 
 
 <!--Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser.-->
 
-<img src="Robot_Schematics.png" width="200" />
+![Headstone Image](Robot_Schematics.png)
 
 
 # First Milestone: Testing Components
@@ -152,7 +152,7 @@ My intensive project is a robot on wheels that can follow you around. I'm relati
 ***LED LIGHTS:*** For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash.
 - SCHEMATICS:
 
-<img src="https://camo.githubusercontent.com/..." data-canonical-src="wiring_led1.webp" width="200" height="400" />
+<img src="wiring_led1.webp" width="217.5" height="303.25" />
 - CODE:
   
 ```HTML
