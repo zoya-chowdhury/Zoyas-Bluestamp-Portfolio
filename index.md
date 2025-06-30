@@ -67,14 +67,14 @@ void loop() {
   Serial.println (right); //for debugging, shows right sensor is working (will print 0 or 1 as instructed)
 
 //MODIFICATION: prioritizing stopping if edge detected + requiring all instructions to only work if the sensor can detect something below it
-if (edge){                                 //MODIFICATION: 1st priority: robot stops if                                                             no ground detected below it
+if (edge){                                 //MODIFICATION: 1st priority: robot stops if no ground detected below it
     stopMove();
-    Serial.println(edge);                 //MODIFICATION: prints edge on serial monitor                                                            if command works for debugging
+    Serial.println(edge);                 //MODIFICATION: prints edge on serial monitor if command works for debugging
   }else if (distance>5 && distance<20){
     moveForward(speed);
-  }else if(!left&&right&&!edge){          //MODIFICATION: robot only turns to you if                                                               ground detected below it
+  }else if(!left&&right&&!edge){          //MODIFICATION: robot only turns to you if  ground detected below it
     turnLeft(speed);
-  }else if(left&&!right&&!edge){          //MODIFICATION: robot only turns to you if                                                               ground detected below it
+  }else if(left&&!right&&!edge){          //MODIFICATION: robot only turns to you if ground detected below it
     turnRight(speed);   
   }else{
     stopMove();
