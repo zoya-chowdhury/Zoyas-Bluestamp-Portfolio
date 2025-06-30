@@ -178,7 +178,7 @@ void loop()
 ***BUZZER:*** The next project sought to find out how the buzzer worked. The setup of the two projects, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function).
 - SCHEMATICS:
 
-   <img src="wiring_active_buzzer.webp" width="408" height="582" />
+   <img src="wiring_active_buzzer.webp" width="326.4" height="465.6" />
 
 - CODE:
   
