@@ -152,7 +152,7 @@ My intensive project is a robot on wheels that can follow you around. I'm relati
 ***LED LIGHTS:*** For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash.
 - SCHEMATICS:
 
-<img src="https://camo.githubusercontent.com/..." data-canonical-src="wiring_led1.webp" width="200" height="400" />
+<img src="https://camo.githubusercontent.com/..." data-canonical-src="wiring_led1.webp" />
 - CODE:
   
 ```HTML
