@@ -411,10 +411,8 @@ float readSensorData(){
   return distance;
 }
 ```
- 
 
  # Starter Project
- 
 
  ![Headstone Image](Tetris_Schematics.png)
 
