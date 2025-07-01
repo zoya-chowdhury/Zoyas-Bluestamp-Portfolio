@@ -16,7 +16,7 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 
 **WHAT'S NEXT:** Now that I have completed my first modification, I plan on moving onto more difficult ones. I am unsure which one I would like to beging with, but I have many in mind. Examples include adding sensor to it's back to make it turn around and/or move backward, make it backup when it's too close to something, and making it remote control. I would like to start easy and slowly build myself up, meaning I will likely start with making it back up when it's too close.
 
-# Modified Code
+## Modified Code
 
 ```c++
 //assigining motor pins
@@ -134,7 +134,7 @@ void stopMove() {
 }
 ```
 
-# Modified Schematics
+## Modified Schematics
 
 <img src="Modification_1.png" />
 
@@ -150,7 +150,7 @@ void stopMove() {
 
 **WHAT'S NEXT:** Now that I know how to build and code these parts, as well as fix their issues when they arise, I would like the modify the robot to be able to detect when I am behind it to either back up or turn around to continue following me. Now that I have finished building my project, the next thing to do is add my own modifications.
 
-# Code
+## Code
 <!--Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs.-->
 
 ```c++
@@ -274,7 +274,7 @@ void stopMove() {
 
 **WHAT'S NEXT:** Now that I have completed wiring and construction, I need to figure out and test the codes in order to make the robot work. I may need to make my own additions to it for debugging in case anything goes wrong.
 
-# Schematics 
+## Schematics 
 
 <!--Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser.-->
 
@@ -287,13 +287,18 @@ void stopMove() {
 
 **DESCRIPTION:** My intensive project is a robot on wheels that can follow people around. I am relatively inexperienced in the robotics field, so I began my project by testing several parts and their corresponding programs for my first milestone in order to gain a greater understanding of them. I began by watching several videos on the ARDUINO circuitboard and how its software runs before I moved onto more hands-on projects, using the ARDUINO R3 circuitboard with jumper wires for all of them. 
 
-- ***LED Light:*** For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash. Since the light has a positive and negative side, it is very important to make sure that the negative node is connected to the ground while the other is connected to power.
+**CHALLENGES:** This was pretty straightforward and simple, but I did sometimes run into some difficulties with the fragility of the adapter, especially when I wanted to run all the projects all at once. To fix this, I would need to unplug the adapter and USB cable several times until the ARDUINO board connected to my laptop properly. 
+
+**WHAT'S NEXT:** Now that I have reached this milestone, I need to build the robot and attach all the wires to connect all the parts together in order to achieve my second one. Since I've learned how each of these parts work, it will be easier to improvise if needed.
+
+## LED Light
+For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash. Since the light has a positive and negative side, it is very important to make sure that the negative node is connected to the ground while the other is connected to power.
   
-  SCHEMATICS:
+### SCHEMATICS:
 
    <img src="wiring_led1.webp" width="348" height="485.2" />
 
-  CODE:
+### CODE:
   
 ```c++
 //naming the pin the LED light is plugged into
@@ -315,13 +320,14 @@ void loop()
 }
 ```
 
-- ***Buzzer:*** The next project sought to find out how the buzzer worked. The setup of the two projects, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function). The buzzer also has different polarities, like the LED light, so it's important to check for the same things.
+## Buzzer
+The next project sought to find out how the buzzer worked. The setup of the two projects, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function). The buzzer also has different polarities, like the LED light, so it's important to check for the same things.
   
-  SCHEMATICS:
+  ### SCHEMATICS:
 
    <img src="wiring_active_buzzer.webp" width="326.4" height="465.6" />
 
-  CODE:
+  ### CODE:
   
 ```c++
 //naming the pin the buzzer is plugged into (the pin doesn't necessarily need to be a specific name, as long as the code # corresponds to the circuit's pin # being used)
@@ -341,13 +347,14 @@ void loop()
   }
 ```
 
-- ***Motor:*** While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. It requires an additional motor module because the ARDUINO board does not have enough power for the motor to work. Though it has enough voltage for two motors (as you will see later), I decided to test only one for now. The motor itself had two wires that required a screwdriver in order to be plugged into the motor module. These wires were for the motor's positive and negative currents to control which way the motor would rotate.
+## Motor
+While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. It requires an additional motor module because the ARDUINO board does not have enough power for the motor to work. Though it has enough voltage for two motors (as you will see later), I decided to test only one for now. The motor itself had two wires that required a screwdriver in order to be plugged into the motor module. These wires were for the motor's positive and negative currents to control which way the motor would rotate.
   
-  SCHEMATICS:
+  ### SCHEMATICS:
 
    <img src="wheel_motor.webp" width="676.35" height="350.1" />
    
-  CODE:
+  ### CODE:
   
 ```c++
 const int B_1A = 9;
@@ -384,13 +391,14 @@ void loop()
 ```
 
 
-- ***IR Obstacle Avoidance:*** This sensor senses obstacles by transmitting IR rays and receives them when a surface (of an object) reflects them back. If the serial monitor was opened, a 1 would correspond with no nearby object, while a 0 would alert me if there was. One of the green lights on the sensor also turns on to show the same thing.
+## IR Obstacle Avoidance
+This sensor senses obstacles by transmitting IR rays and receives them when a surface (of an object) reflects them back. If the serial monitor was opened, a 1 would correspond with no nearby object, while a 0 would alert me if there was. One of the green lights on the sensor also turns on to show the same thing.
 
-  SCHEMATICS:
+ ### SCHEMATICS:
 
    <img src="detect_the_obstacle_bb.jpg" width="621" height="261.9" />
 
-    CODE:
+### CODE:
   
 ```c
 int irObstaclePin = 2;
@@ -406,13 +414,14 @@ void loop() {
 }
 ```
 
-- ***Ultrasonic Sensor:*** This works similar to the IR sensor, but instead uses ultrasonic frequencies in order to detect how far objects are. This works by emitting sound waves (too high for human ears to pick up, don't worry), and receiving these waves when they are reflected back. The distance is then calculated (in centimeters) based on how long it took for the waves to reflect back and be received.
+## Ultrasonic Sensor
+This works similar to the IR sensor, but instead uses ultrasonic frequencies in order to detect how far objects are. This works by emitting sound waves (too high for human ears to pick up, don't worry), and receiving these waves when they are reflected back. The distance is then calculated (in centimeters) based on how long it took for the waves to reflect back and be received.
 
-  SCHEMATICS:
+  ### SCHEMATICS:
 
    <img src="ultrasonic_bb.jpg" width="388.8" height="400.95" />
    
-  CODE:
+ ### CODE:
   
 ```c++
 const int echoPin = 3;
@@ -447,11 +456,6 @@ float readSensorData(){
   return distance;
 }
 ```
-
-**CHALLENGES:** This was pretty straightforward and simple, but I did sometimes run into some difficulties with the fragility of the adapter, especially when I wanted to run all the projects all at once. To fix this, I would need to unplug the adapter and USB cable several times until the ARDUINO board connected to my laptop properly. 
-
-**WHAT'S NEXT:** Now that I have reached this milestone, I need to build the robot and attach all the wires to connect all the parts together in order to achieve my second one. Since I've learned how each of these parts work, it will be easier to improvise if needed.
-
 
 # Starter Project: Tetris Arcade Console
 
