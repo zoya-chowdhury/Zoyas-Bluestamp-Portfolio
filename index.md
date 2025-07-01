@@ -62,15 +62,15 @@ void loop() {
   delay(100);
 
 //assigning motor instructions to interpretations of IR Obstacle sensor information
-  int left = digitalRead(leftIR);    // 0: Obstructed   1: Empty
+  int left = digitalRead(leftIR);       // 0: Obstructed   1: Empty
   int right = digitalRead(rightIR);
-  int edge = digitalRead(bottomIR);  //MODIFICATION: assigning motor instructions to interpreted bottom sensor data
+  int edge = digitalRead(bottomIR);    //MODIFICATION: assigning motor instructions to interpreted bottom sensor data
   int speed = 150;
-  Serial.println (left); //for debugging, shows left sensor is working (will print 0 or 1 as instructed)
-  Serial.println (right); //for debugging, shows right sensor is working (will print 0 or 1 as instructed)
+  Serial.println (left);              //for debugging, shows left sensor is working (will print 0 or 1 as instructed)
+  Serial.println (right);             //for debugging, shows right sensor is working (will print 0 or 1 as instructed)
 
 //MODIFICATION: prioritizing stopping if edge detected + requiring all instructions to only work if the sensor can detect something below it
-if (edge){                                 //MODIFICATION: 1st priority: robot stops if no ground detected below it
+if (edge){                                //MODIFICATION: 1st priority: robot stops if no ground detected below it
     stopMove();
     Serial.println(edge);                 //MODIFICATION: prints edge on serial monitor if command works for debugging
   }else if (distance>5 && distance<20){
@@ -102,7 +102,7 @@ void moveForward(int speed) {
   analogWrite(A_1A, speed);
   analogWrite(B_1B, speed);
   analogWrite(B_1A, 0);
-  Serialprint.ln("Forward"); //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Forward when moving forward
+  Serialprint.ln("Forward");   //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Forward when moving forward
 }
 
 void turnRight(int speed) {
@@ -110,7 +110,7 @@ void turnRight(int speed) {
   analogWrite(A_1A, 0);
   analogWrite(B_1B, speed);
   analogWrite(B_1A, 0);
- Serialprint.ln("Right") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Right when turning right
+ Serialprint.ln("Right")     //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Right when turning right
 }
 
 void turnLeft(int speed) {
@@ -118,7 +118,7 @@ void turnLeft(int speed) {
   analogWrite(A_1A, speed);
   analogWrite(B_1B, 0);
   analogWrite(B_1A, speed);
- Serialprint.ln("Left") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Left when moving Left
+ Serialprint.ln("Left")     //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Left when moving Left
 }
 
 void stopMove() {
@@ -126,7 +126,7 @@ void stopMove() {
   analogWrite(A_1A, 0);
   analogWrite(B_1B, 0);
   analogWrite(B_1A, 0);
- Serialprint.ln("Stop") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Stop when stopped/stopping
+ Serialprint.ln("Stop")     //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Stop when stopped/stopping
 }
 ```
 
@@ -185,11 +185,11 @@ void loop() {
   delay(100);
 
 //assigning motor instructions to interpretations of IR Obstacle sensor information
-  int left = digitalRead(leftIR);  // 0: Obstructed   1: Empty
+  int left = digitalRead(leftIR);     // 0: Obstructed   1: Empty
   int right = digitalRead(rightIR);
   int speed = 150;
-  Serial.println (left); //for debugging, shows left sensor is working (will print 0 or 1 as instructed)
-  Serial.println (right); //for debugging, shows right sensor is working (will print 0 or 1 as instructed)
+  Serial.println (left);              //for debugging, shows left sensor is working (will print 0 or 1 as instructed)
+  Serial.println (right);             //for debugging, shows right sensor is working (will print 0 or 1 as instructed)
 
   if (distance>5 && distance<10){
     moveForward(speed);
@@ -220,7 +220,7 @@ void moveForward(int speed) {
   analogWrite(A_1A, speed);
   analogWrite(B_1B, speed);
   analogWrite(B_1A, 0);
-  Serialprint.ln("Forward"); //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Forward when moving forward
+  Serialprint.ln("Forward");   //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Forward when moving forward
 }
 
 void turnRight(int speed) {
@@ -228,7 +228,7 @@ void turnRight(int speed) {
   analogWrite(A_1A, 0);
   analogWrite(B_1B, speed);
   analogWrite(B_1A, 0);
- Serialprint.ln("Right") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Right when turning right
+ Serialprint.ln("Right")     //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Right when turning right
 }
 
 void turnLeft(int speed) {
@@ -236,7 +236,7 @@ void turnLeft(int speed) {
   analogWrite(A_1A, speed);
   analogWrite(B_1B, 0);
   analogWrite(B_1A, speed);
- Serialprint.ln("Left") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Left when moving Left
+ Serialprint.ln("Left")     //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Left when moving Left
 }
 
 void stopMove() {
@@ -244,7 +244,7 @@ void stopMove() {
   analogWrite(A_1A, 0);
   analogWrite(B_1B, 0);
   analogWrite(B_1A, 0);
- Serialprint.ln("Stop") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Stop when stopped/stopping
+ Serialprint.ln("Stop")     //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Stop when stopped/stopping
 }
 ```
 
