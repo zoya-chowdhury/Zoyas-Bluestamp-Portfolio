@@ -5,7 +5,7 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 |:--:|:--:|:--:|:--:|
 | Zoya C. | Mission San Jose High School | Electrical Engineering | Incoming Junior
 
-<!--Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
+<!--Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.c++) if you need help.**
 
 ![Headstone Image]()-->
   
@@ -197,12 +197,16 @@ void loop() {
   Serial.println (left);              //for debugging, shows left sensor is working (will print 0 or 1 as instructed)
   Serial.println (right);             //for debugging, shows right sensor is working (will print 0 or 1 as instructed)
 
-  if (distance>5 && distance<10){
+// if ultrasonic sensor detects something within 5-10cm, it will move forward
+if (distance>5 && distance<10){
     moveForward(speed);
   }else if(!left&&right){
+  // assuming the ultrasonic sensor didn't detect anything, if left IR sensor detects something + right IR sensor doesn't, it will turn left
     turnLeft(speed);
+  // assuming the ultrasonic sensor didn't detect anything, if right IR sensor detects something + left IR sensor doesn't, it will turn right
   }else if(left&&!right){
     turnRight(speed);
+  // if none of these occur, the robot will stay in place
   }else{
     stopMove();
   }
@@ -285,7 +289,7 @@ My intensive project is a robot on wheels that can follow you around. I am relat
 <img src="wiring_led1.webp" width="348" height="485.2" />
 - CODE:
   
-```HTML
+```c++
 //naming the pin the LED light is plugged into
 const int ledPin = 9;
 
@@ -312,7 +316,7 @@ void loop()
 
 - CODE:
   
-```HTML
+```c++
 //naming the pin the buzzer is plugged into (the pin doesn't necessarily need to be a specific name, as long as the code # corresponds to the circuit's pin #  being used)
 const int buzzerPin = 8;
 
@@ -336,7 +340,7 @@ void loop()
    <img src="wheel_motor.webp" width="676.35" height="350.1" />
 - CODE:
   
-```HTML
+```c++
 const int B_1A = 9;
 const int B_1B = 10;
 
@@ -371,7 +375,7 @@ void loop()
 ```
 
 
-***IR OBSTACLE AVOIDANCE:*** This sensor detects obstacles by transmitting IR rays and receives them when a surface (of an object) reflects them back. If you opened the serial monitor, a 1 would correspond with no nearby object while a 0 would alert you of one. 
+***IR OBSTACLE AVOIDANCE:*** This sensor senses obstacles by transmitting IR rays and receives them when a surface (of an object) reflects them back. If you opened the serial monitor, a 1 would correspond with no nearby object while a 0 would alert you if there was. One of the  green lights on the sensor also turns on to show the same thing.
 
 - SCHEMATICS:
 
@@ -379,28 +383,28 @@ void loop()
 
 - CODE:
   
-```HTML
+```c
 int irObstaclePin = 2;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(irObstaclePin, INPUT);
+  pinMode(irObstaclePin, INPUT);  //assigns pin & mode
 }
 
 void loop() {
-  Serial.println(digitalRead(irObstaclePin));
+  Serial.println(digitalRead(irObstaclePin));  //digitalRead: reads designated pin's signal as high or low
   delay(10);
 }
 ```
 
-***ULTRASONIC SENSOR:*** This works similar to the IR sensor, but instead uses ultrasonic frequencies in order to detect how far objects. This works by emitting sound waves (too high for human ears to pick up), and receiving these waves when they are reflected back. The distance is then calculated based on how long it took for the waves to reflect back and be received.
+***ULTRASONIC SENSOR:*** This works similar to the IR sensor, but instead uses ultrasonic frequencies in order to detect how far objects are. This works by emitting sound waves (too high for human ears to pick up), and receiving these waves when they are reflected back. The distance is then calculated (in centimeters) based on how long it took for the waves to reflect back and be received.
 
 - SCHEMATICS:
 
    <img src="ultrasonic_bb.jpg" width="388.8" height="400.95" />
 - CODE:
   
-```HTML
+```c++
 const int echoPin = 3;
 const int trigPin = 4;
 
@@ -420,12 +424,15 @@ void loop(){
 }
 
 float readSensorData(){
+  //trigger pin sends wave signal every 2us
   digitalWrite(trigPin, LOW); 
   delayMicroseconds(2);
+  //trigger pin transmits 10us square wave
   digitalWrite(trigPin, HIGH); 
   delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);  
-  float distance = pulseIn(echoPin, HIGH)/58.00;  //Equivalent to (340m/s*1us)/2
+  digitalWrite(trigPin, LOW);
+  //echo pin receives high signal when obstacle is in range, then records time from start-receive w/ pulseIn
+  float distance = pulseIn(echoPin, HIGH)/58.00;  //Equivalent to (340m/s*1us)/2, which is the speed of sound
   return distance;
 }
 ```
