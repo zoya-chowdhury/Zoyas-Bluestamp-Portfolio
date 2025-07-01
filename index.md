@@ -291,6 +291,7 @@ My intensive project is a robot on wheels that can follow people around. I am re
 - SCHEMATICS:
 
 <img src="wiring_led1.webp" width="348" height="485.2" />
+
 - CODE:
   
 ```c++
@@ -342,6 +343,7 @@ void loop()
 - SCHEMATICS:
 
    <img src="wheel_motor.webp" width="676.35" height="350.1" />
+   
 - CODE:
   
 ```c++
@@ -406,6 +408,7 @@ void loop() {
 - SCHEMATICS:
 
    <img src="ultrasonic_bb.jpg" width="388.8" height="400.95" />
+   
 - CODE:
   
 ```c++
