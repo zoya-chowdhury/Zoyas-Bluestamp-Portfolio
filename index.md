@@ -287,7 +287,7 @@ void stopMove() {
 
 **DESCRIPTION:** My intensive project is a robot on wheels that can follow people around. I am relatively inexperienced in the robotics field, so I began my project by testing several parts and their corresponding programs for my first milestone in order to gain a greater understanding of them. I began by watching several videos on the ARDUINO circuitboard and how its software runs before I moved onto more hands-on projects, using the ARDUINO R3 circuitboard with jumper wires for all of them. 
 
-- ***LED Lights:*** For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash. Since the light has a positive and negative side, it is very important to make sure that the negative node is connected to the ground while the other is connected to power.
+- ***LED Light:*** For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash. Since the light has a positive and negative side, it is very important to make sure that the negative node is connected to the ground while the other is connected to power.
 
   SCHEMATICS:
 
@@ -316,6 +316,7 @@ void loop()
 ```
 
 - ***Buzzer:*** The next project sought to find out how the buzzer worked. The setup of the two projects, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function). The buzzer also has different polarities, like the LED light, so it's important to check for the same things.
+  
   SCHEMATICS:
 
    <img src="wiring_active_buzzer.webp" width="326.4" height="465.6" />
@@ -341,6 +342,7 @@ void loop()
 ```
 
 - ***Motor:*** While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. It requires an additional motor module because the ARDUINO board does not have enough power for the motor to work. Though it has enough voltage for two motors (as you will see later), I decided to test only one for now. The motor itself had two wires that required a screwdriver in order to be plugged into the motor module. These wires were for the motor's positive and negative currents to control which way the motor would rotate.
+  
   SCHEMATICS:
 
    <img src="wheel_motor.webp" width="676.35" height="350.1" />
