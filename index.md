@@ -379,7 +379,7 @@ void loop() {
 
 - SCHEMATICS:
 
-   <img src="ultrasonic_bb.jpg" width="385.8" height="400.95" />
+   <img src="ultrasonic_bb.jpg" width="388.8" height="400.95" />
 - CODE:
   
 ```HTML
