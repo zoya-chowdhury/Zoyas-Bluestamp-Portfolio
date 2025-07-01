@@ -12,7 +12,7 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 # Modification #1: Detecting Edges
 When initially testing the robot's ability to follow your hand, one thing I would always need to be careful of is to make sure I wouldn't accidentally lead it off the table. As a result, I wanted my first modification to be adding a sensor to ensure it would stop before any cliffs, even if it sensed your hand. After all, what's good is a pet robot with no survival instincts? One of the major challenges was that this modification was completely my own design. This meant I would have to figure out how and what sensor to add and how to code it. What made it even more difficult was that prior to this program, I had no coding or circuit-building experience. This meant any coding I did was based off patterns I had noticed from the code I had already been using. The same was true for the wiring. The sensor I decided to go with was the IR sensor, which I tweaked slightly to be facing the ground. For the code, I modified it by instructing the robot to stop if this new sensor didn't detect anything below it; the robot could not carry out it's steering commands (left, right, forward), even if it detected something nearby, so long as there was some sort of edge before it. 
 
-<img src="Modification_1.png" />
+# Modified Code
 
 ```c++
 //assigining motor pins
@@ -129,6 +129,10 @@ void stopMove() {
  Serialprint.ln("Stop") //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Stop when stopped/stopping
 }
 ```
+
+# Modified Schematics
+
+<img src="Modification_1.png" />
 
 # Final Milestone: Coding
 
@@ -414,7 +418,7 @@ float readSensorData(){
 }
 ```
 
- # Starter Project
+# Starter Project: Tetris Arcade Console
 
  ![Headstone Image](Tetris_Schematics.png)
 
