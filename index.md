@@ -285,15 +285,19 @@ void stopMove() {
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CAFV6XYA0hU?si=x979owAFFp9I4_uh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-My intensive project is a robot on wheels that can follow people around. I am relatively inexperienced in the robotics field, so I began my project by testing several parts and their corresponding programs for my first milestone in order to gain a greater understanding of them. I began by watching several videos on the ARDUINO circuitboard and how its software runs before I moved onto more hands-on projects, using the ARDUINO R3 circuitboard with jumper wires for all of them. This was pretty straightforward and simple, but I did sometimes run into some difficulties with the fragility of the adapter, especially when I wanted to run all the projects all at once. To fix this, I would need to unplug the adapter and USB cable several times until the ARDUINO board connected to my laptop properly. Now that I have reached this milestone, I need to build the robot and attach all the wires to connect all the parts together in order to achieve my second one.
+**DESCRIPTION:** My intensive project is a robot on wheels that can follow people around. I am relatively inexperienced in the robotics field, so I began my project by testing several parts and their corresponding programs for my first milestone in order to gain a greater understanding of them. I began by watching several videos on the ARDUINO circuitboard and how its software runs before I moved onto more hands-on projects, using the ARDUINO R3 circuitboard with jumper wires for all of them. 
 
-- **LED LIGHTS:** For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash. Since the light has a positive and negative side, it is very important to make sure that the negative node is connected to the ground while the other is connected to power.
+**CHALLENGES:** This was pretty straightforward and simple, but I did sometimes run into some difficulties with the fragility of the adapter, especially when I wanted to run all the projects all at once. To fix this, I would need to unplug the adapter and USB cable several times until the ARDUINO board connected to my laptop properly. 
 
-      SCHEMATICS:
+**WHAT'S NEXT:** Now that I have reached this milestone, I need to build the robot and attach all the wires to connect all the parts together in order to achieve my second one. Since I've learned how each of these parts work, it will be easier to improvise if needed.
+
+- ***LED Lights:*** For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash. Since the light has a positive and negative side, it is very important to make sure that the negative node is connected to the ground while the other is connected to power.
+
+  SCHEMATICS:
 
 <img src="wiring_led1.webp" width="348" height="485.2" />
 
-  - CODE:
+  CODE:
   
 ```c++
 //naming the pin the LED light is plugged into
@@ -315,12 +319,12 @@ void loop()
 }
 ```
 
-**BUZZER:** The next project sought to find out how the buzzer worked. The setup of the two projects, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function). The buzzer also has different polarities, like the LED light, so it's important to check for the same things.
-- SCHEMATICS:
+- ***Buzzer:*** The next project sought to find out how the buzzer worked. The setup of the two projects, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function). The buzzer also has different polarities, like the LED light, so it's important to check for the same things.
+  SCHEMATICS:
 
    <img src="wiring_active_buzzer.webp" width="326.4" height="465.6" />
 
-- CODE:
+  CODE:
   
 ```c++
 //naming the pin the buzzer is plugged into (the pin doesn't necessarily need to be a specific name, as long as the code # corresponds to the circuit's pin # being used)
@@ -340,12 +344,12 @@ void loop()
   }
 ```
 
-**MOTOR:** While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. It requires an additional motor module because the ARDUINO board does not have enough power for the motor to work. Though it has enough voltage for two motors (as you will see later), I decided to test only one for now. The motor itself had two wires that required a screwdriver in order to be plugged into the motor module. These wires were for the motor's positive and negative currents to control which way the motor would rotate.
-- SCHEMATICS:
+- ***Motor:*** While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. It requires an additional motor module because the ARDUINO board does not have enough power for the motor to work. Though it has enough voltage for two motors (as you will see later), I decided to test only one for now. The motor itself had two wires that required a screwdriver in order to be plugged into the motor module. These wires were for the motor's positive and negative currents to control which way the motor would rotate.
+  SCHEMATICS:
 
    <img src="wheel_motor.webp" width="676.35" height="350.1" />
    
-- CODE:
+  CODE:
   
 ```c++
 const int B_1A = 9;
@@ -382,13 +386,13 @@ void loop()
 ```
 
 
-**IR OBSTACLE AVOIDANCE:** This sensor senses obstacles by transmitting IR rays and receives them when a surface (of an object) reflects them back. If the serial monitor was opened, a 1 would correspond with no nearby object, while a 0 would alert me if there was. One of the green lights on the sensor also turns on to show the same thing.
+- ***IR Obstacle Avoidance:*** This sensor senses obstacles by transmitting IR rays and receives them when a surface (of an object) reflects them back. If the serial monitor was opened, a 1 would correspond with no nearby object, while a 0 would alert me if there was. One of the green lights on the sensor also turns on to show the same thing.
 
-- SCHEMATICS:
+  SCHEMATICS:
 
    <img src="detect_the_obstacle_bb.jpg" width="621" height="261.9" />
 
-- CODE:
+  CODE:
   
 ```c
 int irObstaclePin = 2;
@@ -404,13 +408,13 @@ void loop() {
 }
 ```
 
-**ULTRASONIC SENSOR:** This works similar to the IR sensor, but instead uses ultrasonic frequencies in order to detect how far objects are. This works by emitting sound waves (too high for human ears to pick up, don't worry), and receiving these waves when they are reflected back. The distance is then calculated (in centimeters) based on how long it took for the waves to reflect back and be received.
+- ***Ultrasonic Sensor:*** This works similar to the IR sensor, but instead uses ultrasonic frequencies in order to detect how far objects are. This works by emitting sound waves (too high for human ears to pick up, don't worry), and receiving these waves when they are reflected back. The distance is then calculated (in centimeters) based on how long it took for the waves to reflect back and be received.
 
-- SCHEMATICS:
+  SCHEMATICS:
 
    <img src="ultrasonic_bb.jpg" width="388.8" height="400.95" />
    
-- CODE:
+  CODE:
   
 ```c++
 const int echoPin = 3;
