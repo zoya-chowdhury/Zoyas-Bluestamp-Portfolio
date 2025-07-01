@@ -290,10 +290,10 @@ void stopMove() {
 - ***LED Light:*** For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash. Since the light has a positive and negative side, it is very important to make sure that the negative node is connected to the ground while the other is connected to power.
 
   SCHEMATICS:
-
+  
 <img src="wiring_led1.webp" width="348" height="485.2" />
 
-  CODE:
+  CODE: 
   
 ```c++
 //naming the pin the LED light is plugged into
