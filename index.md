@@ -288,12 +288,12 @@ void stopMove() {
 **DESCRIPTION:** My intensive project is a robot on wheels that can follow people around. I am relatively inexperienced in the robotics field, so I began my project by testing several parts and their corresponding programs for my first milestone in order to gain a greater understanding of them. I began by watching several videos on the ARDUINO circuitboard and how its software runs before I moved onto more hands-on projects, using the ARDUINO R3 circuitboard with jumper wires for all of them. 
 
 - ***LED Light:*** For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash. Since the light has a positive and negative side, it is very important to make sure that the negative node is connected to the ground while the other is connected to power.
-
-  SCHEMATICS:
   
-<img src="wiring_led1.webp" width="348" height="485.2" />
+  SCHEMATICS:
 
-  CODE: 
+   <img src="wiring_led1.webp" width="348" height="485.2" />
+
+  CODE:
   
 ```c++
 //naming the pin the LED light is plugged into
