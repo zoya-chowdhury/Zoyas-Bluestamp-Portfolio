@@ -303,7 +303,7 @@ void setup()
 void loop()
 {
   digitalWrite(ledPin,HIGH);//turn the LED on 
-  delay(500);               //wait for half a second (number corresponds miliseconds)
+  delay(500);               //wait for half a second (# corresponds miliseconds)
   digitalWrite(ledPin,LOW); //turn the LED off
   delay(500);               //wait for half a second
 }
@@ -418,7 +418,8 @@ void setup(){
 
 void loop(){
   float distance = readSensorData();
-  Serial.print(distance);   
+  //shows objects distance (in cm) from sensor
+ Serial.print(distance);   
   Serial.println(" cm");
   delay(400);
 }
