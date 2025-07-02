@@ -9,6 +9,140 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 
 ![Headstone Image]()-->
   
+# Modification #2: Moving Backwards
+**DESCRIPTION:** For this modification, I coded the robot to move backwards if it got too close to me. There were no changes in the wiring since all I had to do was figure the instructions that would make the wheels move backwards, and then assign this instruction to a certain distance range. I chose this because I noticed the robot would sometimes bump into my hand due to the speed I wanted it to go at. Though I ultimately decided against it, I did try toying with the speed as well. (The robot felt slow if I reduced the speed enough to prevent the issue.) 
+
+**CHALLENGES:** The difficulties of this modification was to find the right distance range for moving forward as well as moving backwards. I didn't want them to overlap or be too close because the robot would go haywire and looked like it was attacking you. However, as I messed with them, I realized I did not want the ranges to be too far from each other. This would make the robot run more smoothly, and the "attacks" would be softened to appear more like nudges. I ultimately decided 6 cm was a good enough distance from your hand because at this range, you would be almost touchingthe robot. I decided on the forward distance accordingly, given 3cm was too great and 1cm was too small a distane.
+
+**WHAT'S NEXT:** After this, I want to add sensors to the back of the robot and modify it to turn around if it detects anything behind it. This will be slightly trickier because I might need to rewire a lot of the breadboard to make space for the new ground wires these sensors will use
+
+## Modified Code
+
+```c++
+const int A_1B = 5;
+const int A_1A = 6;
+const int B_1B = 9;
+const int B_1A = 10;
+
+const int bottomIR = 2;
+const int rightIR=7;
+const int leftIR=8;
+
+const int trigPin = 3;
+const int echoPin = 4;
+
+void setup() {
+  Serial.begin(9600); 
+
+  //motor
+  pinMode(A_1B, OUTPUT);
+  pinMode(A_1A, OUTPUT);
+  pinMode(B_1B, OUTPUT);
+  pinMode(B_1A, OUTPUT);
+
+  //IR obstacle
+  pinMode(leftIR,INPUT);
+  pinMode(rightIR,INPUT);
+  
+  //IR edge
+  pinMode(bottomIR,INPUT);
+
+  //ultrasonic
+  pinMode(echoPin, INPUT);
+  pinMode(trigPin, OUTPUT);
+  Serial.println("Ultrasonic Sensor:");
+
+  
+}
+
+void loop() {
+
+  float distance = readSensorData();
+  Serial.print(distance);
+  Serial.println("cm");
+  delay(100);
+
+  int left = digitalRead(leftIR);  // 0: Obstructed   1: Empty
+  int right = digitalRead(rightIR);
+  int edge = digitalRead (bottomIR);
+  int speed = 150;
+  Serial.println (left);
+
+  if (edge){
+    stopMove();
+    Serial.println(edge);
+  }else if (distance>8 && distance<20){  //MODIFICATION: messed with the range your hand has to be for following so the new instruction's range wouldn't overlap
+    moveForward(speed);
+  //MODIFICATION: instructs robot to move backwards if ultrasonic sensor detects an object within 6 cm
+  }else if (distance < 6){
+    moveBackward(speed);
+  }else if(!left&&right&&!edge){
+    turnLeft(speed);
+  }else if(left&&!right&&!edge){
+    turnRight(speed);   
+  }else{
+    stopMove();
+  }
+  delay(100);
+}
+
+
+float readSensorData() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  float distance = pulseIn(echoPin, HIGH) / 58.00; //Equivalent to (340m/s*1us)/2
+  return distance;
+}
+
+void moveForward(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, speed);
+  analogWrite(B_1B, speed);
+  analogWrite(B_1A, 0);
+  Serial.println("Foward");
+}
+
+void turnRight(int speed) {
+  analogWrite(A_1B, speed);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, speed);
+  analogWrite(B_1A, 0);
+    Serial.println("Right");
+
+}
+
+void turnLeft(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, speed);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, speed);
+    Serial.println("Left");
+
+}
+
+void stopMove() {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, 0);
+    Serial.println("Stop");
+
+}
+
+//MODIFICATION: instructs motors to make wheels move backwards
+void moveBackward(int speed) {
+  analogWrite(A_1B, speed);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, speed);
+    Serial.println("Backward");
+
+}
+```
+
 # Modification #1: Detecting Edges
 **DESCRIPTION:** When initially testing the robot's ability to follow me, one thing I would always need to be careful of is to make sure I wouldn not accidentally lead it off the table. As a result, I wanted my first modification to be adding a sensor to ensure it would stop before any cliffs, even if it sensed me. After all, what good is a pet robot with no survival instincts? 
 
