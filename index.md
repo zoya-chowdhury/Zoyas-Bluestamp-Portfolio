@@ -9,6 +9,18 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 
 ![Headstone Image]()-->
   
+# Modification #3: Turning Around
+**DESCRIPTION:** 
+
+**CHALLENGES:** 
+
+**WHAT'S NEXT:**
+
+## Modified Code
+
+## Modified Schematics
+<img src:"Modification_2.png" />
+
 # Modification #2: Moving Backwards
 **DESCRIPTION:** For this modification, I coded the robot to move backwards if it got too close to me. There were no changes in the wiring since all I had to do was figure the instructions that would make the wheels move backwards, and then assign this instruction to a certain distance range. I chose this because I noticed the robot would sometimes bump into my hand due to the speed I wanted it to go at. Though I ultimately decided against it, I did try toying with the speed as well. (The robot felt slow if I reduced the speed enough to prevent the issue.) 
 
