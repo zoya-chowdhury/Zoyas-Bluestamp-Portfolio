@@ -16,8 +16,6 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 
 **WHAT'S NEXT:**
 
-## Modified Code
-
 ## Modified Schematics
 <img src="Modification_3.png" />
 
