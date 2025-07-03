@@ -113,11 +113,12 @@ This sensor senses obstacles by transmitting IR rays and receives them when a su
 This works similar to the IR sensor, but instead uses ultrasonic frequencies in order to detect how far objects are. This works by emitting sound waves (too high for human ears to pick up, don't worry), and receiving these waves when they are reflected back. The distance from sensor to object is then calculated (in centimeters) based on the distance the sound traveled divided by 2 to account for the sound wave traveling to the object *and* being reflected back. How far the sound wave traveled is based on how long it took for the sound wave to travel there and back, multiplied by the speed of sound constant (~340m/s).
 
   ### SCHEMATICS:
+
    <img src="ultrasonic_bb.jpg" width="388.8" height="400.95" />
-   
+
 # Starter Project: Tetris Arcade Console
 
- ![Headstone Image](Tetris_Schematics.png)
+[Headstone Image](Tetris_Schematics.png)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xC3nwDxYMC0?si=Qx-B4X6S6Iq_OcWs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
  
