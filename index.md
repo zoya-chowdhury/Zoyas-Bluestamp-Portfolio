@@ -82,14 +82,14 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 **WHAT'S NEXT:** Now that I have reached this milestone, I need to build the robot and attach all the wires to connect all the parts together in order to achieve my second one. Since I've learned how each of these parts work, it will be easier to improvise if needed.
 
 ## LED Light
-For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash. Since the light has a positive and negative side, it is very important to make sure that the negative node is connected to the ground while the other is connected to power. The resistor ensures the voltage isn't too high, as the light doesn't need the 5 volts the circuitboard offers. Too much voltage would result in the light burning out and maybe even wires melting.
+For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash. LEDs, short for light-emitting diodes, work by running a current throught the diode, which is semiconducting. This then emits photons, which produces light. Since the light has a positive and negative side, it is very important to make sure that the negative node is connected to the ground while the other is connected to power. The resistor ensures the voltage isn't too high, as the light doesn't need the 5 volts the circuitboard offers. Too much voltage would result in the light burning out and maybe even wires melting.
   
 ### SCHEMATICS:
 
    <img src="wiring_led1.webp" width="348" height="485.2" />
 
 ## Buzzer
-The next project sought to find out how the buzzer worked. The setup of the two projects, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function). The buzzer also has different polarities, like the LED light, so it's important to check for the same things.
+The next project sought to find out how the buzzer worked. The setup of this and the LED project, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function). The buzzer also has different polarities, like the LED light, so it's important to check for the same things. The buzzer works by powering two electrodes, which causes the piezoelectric material in a disk within it to deform. When this disk moves, it produces sound. 
   
 ### SCHEMATICS:
 
@@ -257,7 +257,7 @@ float readSensorData(){
   digitalWrite(trigPin, HIGH); 
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
-  //echo pin receives high signal when obstacle is in range, then records time from start-receive w/ pulseIn
+  //echo pin receives high signal when obstacle is in range, then records time from start-receive w/ pulseIn; defines float distance as recorded distance * 0.5
   float distance = pulseIn(echoPin, HIGH)/58.00;  //Equivalent to (340m/s*1us)/2, which is the speed of sound
   return distance;
 }
