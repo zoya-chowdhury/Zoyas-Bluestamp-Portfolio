@@ -28,132 +28,6 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 
 **WHAT'S NEXT:** After this, I want to add sensors to the back of the robot and modify it to turn around if it detects anything behind it. This will be slightly trickier because I might need to rewire a lot of the breadboard to make space for the new ground wires these sensors will use
 
-## Modified Code
-
-```c++
-const int A_1B = 5;
-const int A_1A = 6;
-const int B_1B = 9;
-const int B_1A = 10;
-
-const int bottomIR = 2;
-const int rightIR=7;
-const int leftIR=8;
-
-const int trigPin = 3;
-const int echoPin = 4;
-
-void setup() {
-  Serial.begin(9600); 
-
-  //motor
-  pinMode(A_1B, OUTPUT);
-  pinMode(A_1A, OUTPUT);
-  pinMode(B_1B, OUTPUT);
-  pinMode(B_1A, OUTPUT);
-
-  //IR obstacle
-  pinMode(leftIR,INPUT);
-  pinMode(rightIR,INPUT);
-  
-  //IR edge
-  pinMode(bottomIR,INPUT);
-
-  //ultrasonic
-  pinMode(echoPin, INPUT);
-  pinMode(trigPin, OUTPUT);
-  Serial.println("Ultrasonic Sensor:");
-
-  
-}
-
-void loop() {
-
-  float distance = readSensorData();
-  Serial.print(distance);
-  Serial.println("cm");
-  delay(100);
-
-  int left = digitalRead(leftIR);  // 0: Obstructed   1: Empty
-  int right = digitalRead(rightIR);
-  int edge = digitalRead (bottomIR);
-  int speed = 150;
-  Serial.println (left);
-
-  if (edge){
-    stopMove();
-    Serial.println(edge);
-  }else if (distance>8 && distance<20){  //MODIFICATION: messed with the range your hand has to be for following so the new instruction's range wouldn't overlap
-    moveForward(speed);
-  //MODIFICATION: instructs robot to move backwards if ultrasonic sensor detects an object within 6 cm
-  }else if (distance < 6){
-    moveBackward(speed);
-  }else if(!left&&right&&!edge){
-    turnLeft(speed);
-  }else if(left&&!right&&!edge){
-    turnRight(speed);   
-  }else{
-    stopMove();
-  }
-  delay(100);
-}
-
-
-float readSensorData() {
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  float distance = pulseIn(echoPin, HIGH) / 58.00; //Equivalent to (340m/s*1us)/2
-  return distance;
-}
-
-void moveForward(int speed) {
-  analogWrite(A_1B, 0);
-  analogWrite(A_1A, speed);
-  analogWrite(B_1B, speed);
-  analogWrite(B_1A, 0);
-  Serial.println("Foward");
-}
-
-void turnRight(int speed) {
-  analogWrite(A_1B, speed);
-  analogWrite(A_1A, 0);
-  analogWrite(B_1B, speed);
-  analogWrite(B_1A, 0);
-    Serial.println("Right");
-
-}
-
-void turnLeft(int speed) {
-  analogWrite(A_1B, 0);
-  analogWrite(A_1A, speed);
-  analogWrite(B_1B, 0);
-  analogWrite(B_1A, speed);
-    Serial.println("Left");
-
-}
-
-void stopMove() {
-  analogWrite(A_1B, 0);
-  analogWrite(A_1A, 0);
-  analogWrite(B_1B, 0);
-  analogWrite(B_1A, 0);
-    Serial.println("Stop");
-
-}
-
-//MODIFICATION: instructs motors to make wheels move backwards
-void moveBackward(int speed) {
-  analogWrite(A_1B, speed);
-  analogWrite(A_1A, 0);
-  analogWrite(B_1B, 0);
-  analogWrite(B_1A, speed);
-    Serial.println("Backward");
-
-}
-```
 
 # Modification #1: Detecting Edges
 **DESCRIPTION:** When initially testing the robot's ability to follow me, one thing I would always need to be careful of is to make sure I wouldn not accidentally lead it off the table. As a result, I wanted my first modification to be adding a sensor to ensure it would stop before any cliffs, even if it sensed me. After all, what good is a pet robot with no survival instincts? 
@@ -162,127 +36,10 @@ void moveBackward(int speed) {
 
 **WHAT'S NEXT:** Now that I have completed my first modification, I plan on moving onto more difficult ones. I am unsure which one I would like to beging with, but I have many in mind. Examples include adding sensor to it's back to make it turn around and/or move backward, make it backup when it's too close to something, and making it remote control. I would like to start easy and slowly build myself up, meaning I will likely start with making it back up when it's too close.
 
-## Modified Code
-
-```c++
-//assigining motor pins
-const int A_1B = 5;
-const int A_1A = 6;
-const int B_1B = 9;
-const int B_1A = 10;
-
-//MODIFIATION: assigning IR edge pin
-const int bottomIR=2;
-
-//assigning IR obstacle pins
-const int rightIR=7;
-const int leftIR=8;
-
-//assigning ultrasonic pins
-const int trigPin = 3;
-const int echoPin = 4;
-
-void setup() {
-  Serial.begin(9600);
-
-  //defining motor pins
-  pinMode(A_1B, OUTPUT);
-  pinMode(A_1A, OUTPUT);
-  pinMode(B_1B, OUTPUT);
-  pinMode(B_1A, OUTPUT);
-
-  //MODIFICATION: defining bottomIR pin
-  pinMode(bottomIR,INPUT);
-
- //defining IR obstacle pins
-  pinMode(leftIR,INPUT);
-  pinMode(rightIR,INPUT);
-  
-  //defining ultrasonic pins
-  pinMode(echoPin, INPUT);
-  pinMode(trigPin, OUTPUT);
-}
-
-void loop() {
-//assigning motor instructions to interpretations of Ultrasonic sensor information
-  float distance = readSensorData();
-    //for debugging, shows how far object is from ultrasonic sensor
-    Serial.print(distance);
-    Serialprintln("cm");
-  delay(100);
-
-//assigning motor instructions to interpretations of IR Obstacle sensor information
-  int left = digitalRead(leftIR);       // 0: Obstructed   1: Empty
-  int right = digitalRead(rightIR);
-  int edge = digitalRead(bottomIR);    //MODIFICATION: assigning motor instructions to interpreted bottom sensor data
-  int speed = 150;
-  Serial.println (left);              //for debugging, shows left sensor is working (will print 0 or 1 as instructed)
-  Serial.println (right);             //for debugging, shows right sensor is working (will print 0 or 1 as instructed)
-
-//MODIFICATION: prioritizing stopping if edge detected + requiring all instructions to only work if the sensor can detect something below it
-if (edge){                                //MODIFICATION: 1st priority: robot stops if no ground detected below it
-    stopMove();
-    Serial.println(edge);                 //MODIFICATION: prints edge on serial monitor if command works for debugging
-  }else if (distance>5 && distance<20){
-    moveForward(speed);
-  }else if(!left&&right&&!edge){          //MODIFICATION: robot only turns to you if  ground detected below it
-    turnLeft(speed);
-  }else if(left&&!right&&!edge){          //MODIFICATION: robot only turns to you if ground detected below it
-    turnRight(speed);   
-  }else{
-    stopMove();
-  }
-delay(100);
-}
-
-//defining ultrasonic sensor readings
-float readSensorData() {
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  float distance = pulseIn(echoPin, HIGH) / 58.00; //Equivalent to (340m/s*1us)/2
-  return distance;
-}
-
-//defining motor instructions
-void moveForward(int speed) {
-  analogWrite(A_1B, 0);
-  analogWrite(A_1A, speed);
-  analogWrite(B_1B, speed);
-  analogWrite(B_1A, 0);
-  Serialprint.ln("Forward");   //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Forward when moving forward
-}
-
-void turnRight(int speed) {
-  analogWrite(A_1B, speed);
-  analogWrite(A_1A, 0);
-  analogWrite(B_1B, speed);
-  analogWrite(B_1A, 0);
- Serialprint.ln("Right")     //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Right when turning right
-}
-
-void turnLeft(int speed) {
-  analogWrite(A_1B, 0);
-  analogWrite(A_1A, speed);
-  analogWrite(B_1B, 0);
-  analogWrite(B_1A, speed);
- Serialprint.ln("Left")     //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Left when moving Left
-}
-
-void stopMove() {
-  analogWrite(A_1B, 0);
-  analogWrite(A_1A, 0);
-  analogWrite(B_1B, 0);
-  analogWrite(B_1A, 0);
- Serialprint.ln("Stop")     //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Stop when stopped/stopping
-}
-```
-
 ## Modified Schematics
 
 <img src="Modification_1.png" />
+
 
 # Final Milestone: Coding
 
@@ -296,117 +53,6 @@ void stopMove() {
 
 **WHAT'S NEXT:** Now that I know how to build and code these parts, as well as fix their issues when they arise, I would like the modify the robot to be able to detect when I am behind it to either back up or turn around to continue following me. Now that I have finished building my project, the next thing to do is add my own modifications.
 
-## Code
-<!--Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs.-->
-
-```c++
-//assigining motor pins
-const int A_1B = 5;
-const int A_1A = 6;
-const int B_1B = 9;
-const int B_1A = 10;
-
-//assigning IR obstacle pins
-const int rightIR=7;
-const int leftIR=8;
-
-//assigning ultrasonic pins
-const int trigPin = 3;
-const int echoPin = 4;
-
-void setup() {
-  Serial.begin(9600);
-
-  //defining motor pins
-  pinMode(A_1B, OUTPUT);
-  pinMode(A_1A, OUTPUT);
-  pinMode(B_1B, OUTPUT);
-  pinMode(B_1A, OUTPUT);
-
-  //defining IR obstacle pins
-  pinMode(leftIR,INPUT);
-  pinMode(rightIR,INPUT);
-  
-  //defining ultrasonic pins
-  pinMode(echoPin, INPUT);
-  pinMode(trigPin, OUTPUT);
-}
-
-void loop() {
-//assigning motor instructions to interpretations of Ultrasonic sensor information
-  float distance = readSensorData();
-    //for debugging, shows how far object is from ultrasonic sensor
-    Serial.print(distance);
-    Serialprintln("cm");
-  delay(100);
-
-//assigning motor instructions to interpretations of IR Obstacle sensor information
-  int left = digitalRead(leftIR);     // 0: Obstructed   1: Empty
-  int right = digitalRead(rightIR);
-  int speed = 150;
-  Serial.println (left);              //for debugging, shows left sensor is working (will print 0 or 1 as instructed)
-  Serial.println (right);             //for debugging, shows right sensor is working (will print 0 or 1 as instructed)
-
-// if ultrasonic sensor detects something within 5-10cm, it will move forward
-if (distance>5 && distance<10){
-    moveForward(speed);
-  }else if(!left&&right){
-  // assuming the ultrasonic sensor didn't detect anything, if left IR sensor detects something + right IR sensor doesn't, it will turn left
-    turnLeft(speed);
-  // assuming the ultrasonic sensor didn't detect anything, if right IR sensor detects something + left IR sensor doesn't, it will turn right
-  }else if(left&&!right){
-    turnRight(speed);
-  // if none of these occur, the robot will stay in place
-  }else{
-    stopMove();
-  }
-delay(100);
-}
-
-//defining ultrasonic sensor readings
-float readSensorData() {
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  float distance = pulseIn(echoPin, HIGH) / 58.00; //Equivalent to (340m/s*1us)/2
-  return distance;
-}
-
-//defining motor instructions
-void moveForward(int speed) {
-  analogWrite(A_1B, 0);
-  analogWrite(A_1A, speed);
-  analogWrite(B_1B, speed);
-  analogWrite(B_1A, 0);
-  Serialprint.ln("Forward");   //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Forward when moving forward
-}
-
-void turnRight(int speed) {
-  analogWrite(A_1B, speed);
-  analogWrite(A_1A, 0);
-  analogWrite(B_1B, speed);
-  analogWrite(B_1A, 0);
- Serialprint.ln("Right")     //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Right when turning right
-}
-
-void turnLeft(int speed) {
-  analogWrite(A_1B, 0);
-  analogWrite(A_1A, speed);
-  analogWrite(B_1B, 0);
-  analogWrite(B_1A, speed);
- Serialprint.ln("Left")     //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Left when moving Left
-}
-
-void stopMove() {
-  analogWrite(A_1B, 0);
-  analogWrite(A_1A, 0);
-  analogWrite(B_1B, 0);
-  analogWrite(B_1A, 0);
- Serialprint.ln("Stop")     //for debugging, shows motor is moving correctly and sensor is being read correctly; will print Stop when stopped/stopping
-}
-```
 
 # Second Milestone: Wiring/Construction
 
@@ -444,28 +90,6 @@ For my first test, I put together a simple circuit to test the LED lights in thi
 
    <img src="wiring_led1.webp" width="348" height="485.2" />
 
-### CODE:
-  
-```c++
-//naming the pin the LED light is plugged into
-const int ledPin = 9;
-
-void setup()
-{
-  //initialize the digital pin as an output
-  pinMode(ledPin,OUTPUT);
-}
-
-//the loop routine runs over and over again forever
-void loop()
-{
-  digitalWrite(ledPin,HIGH);//turn the LED on 
-  delay(500);               //wait for half a second (# corresponds miliseconds)
-  digitalWrite(ledPin,LOW); //turn the LED off
-  delay(500);               //wait for half a second
-}
-```
-
 ## Buzzer
 The next project sought to find out how the buzzer worked. The setup of the two projects, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function). The buzzer also has different polarities, like the LED light, so it's important to check for the same things.
   
@@ -473,69 +97,12 @@ The next project sought to find out how the buzzer worked. The setup of the two 
 
    <img src="wiring_active_buzzer.webp" width="326.4" height="465.6" />
 
-  ### CODE:
-  
-```c++
-//naming the pin the buzzer is plugged into (the pin doesn't necessarily need to be a specific name, as long as the code # corresponds to the circuit's pin # being used)
-const int buzzerPin = 8;
-
-void setup()
-{
-  pinMode(buzzerPin, OUTPUT);
-}
-
-void loop()
-{
-    digitalWrite(buzzerPin, HIGH);
-    delay(1000);
-    digitalWrite(buzzerPin, LOW);
-    delay(1000);                  //time doesn't have to be different from LED, just a suggestion since it's loud :)
-  }
-```
-
 ## Motor
 While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. It requires an additional motor module to provide a stronger signal because the ARDUINO board does not have enough power for the motor to work. Though it has enough voltage for two motors (as you will see later), I decided to test only one for now. The motor itself had two wires that required a screwdriver in order to be plugged into the motor module. These wires were for the motor's positive and negative currents to control which way the motor would rotate.
   
   ### SCHEMATICS:
 
    <img src="wheel_motor.webp" width="676.35" height="350.1" />
-   
-  ### CODE:
-  
-```c++
-const int B_1A = 9;
-const int B_1B = 10;
-
-void setup()
-{
-  pinMode(B_1A, OUTPUT);
-  pinMode(B_1B, OUTPUT);
-}
-
-void loop()
-{
-  //rotates motor clockwise
-  digitalWrite(B_1A, HIGH);
-  digitalWrite(B_1B, LOW);
-  delay(2000);
-
-  //stops motor
-  digitalWrite(B_1A, LOW);
-  digitalWrite(B_1B, LOW);
-  delay(500);
-
-  //rotates motor counterclockwise
-  digitalWrite(B_1A, LOW);
-  digitalWrite(B_1B, HIGH);
-  delay(2000);
-
-  //stops motor (again)
-  digitalWrite(B_1A, LOW);
-  digitalWrite(B_1B, LOW);
-  delay(500);
-}
-```
-
 
 ## IR Obstacle Avoidance
 This sensor senses obstacles by transmitting IR rays and receives them when a surface (of an object) reflects them back. If the serial monitor was opened, a 1 would correspond with no nearby object, while a 0 would alert me if there was. One of the green lights on the sensor also turns on to show the same thing. It's important to differentiate this light from the power light, which indicates the sensor is working. Both will be labeled accordingly.
@@ -544,22 +111,6 @@ This sensor senses obstacles by transmitting IR rays and receives them when a su
 
    <img src="detect_the_obstacle_bb.jpg" width="621" height="261.9" />
 
-### CODE:
-  
-```c
-int irObstaclePin = 2;
-
-void setup() {
-  Serial.begin(9600);
-  pinMode(irObstaclePin, INPUT);  //assigns pin & mode
-}
-
-void loop() {
-  Serial.println(digitalRead(irObstaclePin));  //digitalRead: reads designated pin's signal as high or low
-  delay(10);
-}
-```
-
 ## Ultrasonic Sensor
 This works similar to the IR sensor, but instead uses ultrasonic frequencies in order to detect how far objects are. This works by emitting sound waves (too high for human ears to pick up, don't worry), and receiving these waves when they are reflected back. The distance from sensor to object is then calculated (in centimeters) based on the distance the sound traveled divided by 2 to account for the sound wave traveling to the object *and* being reflected back. How far the sound wave traveled is based on how long it took for the sound wave to travel there and back, multiplied by the speed of sound constant (~340m/s).
 
@@ -567,43 +118,7 @@ This works similar to the IR sensor, but instead uses ultrasonic frequencies in 
 
    <img src="ultrasonic_bb.jpg" width="388.8" height="400.95" />
    
- ### CODE:
-  
-```c++
-const int echoPin = 3;
-const int trigPin = 4;
-
-
-void setup(){
-  Serial.begin(9600);
-  pinMode(echoPin, INPUT);
-  pinMode(trigPin, OUTPUT);
-  Serial.println("Ultrasonic sensor:");  
-}
-
-void loop(){
-  float distance = readSensorData();
-  //shows objects distance (in cm) from sensor
- Serial.print(distance);   
-  Serial.println(" cm");
-  delay(400);
-}
-
-float readSensorData(){
-  //trigger pin sends wave signal every 2us
-  digitalWrite(trigPin, LOW); 
-  delayMicroseconds(2);
-  //trigger pin transmits 10us square wave
-  digitalWrite(trigPin, HIGH); 
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  //echo pin receives high signal when obstacle is in range, then records time from start-receive w/ pulseIn
-  float distance = pulseIn(echoPin, HIGH)/58.00;  //Equivalent to (340m/s*1us)/2, which is the speed of sound
-  return distance;
-}
-```
-
-# Starter Project: Tetris Arcade Console
+   # Starter Project: Tetris Arcade Console
 
  ![Headstone Image](Tetris_Schematics.png)
 
