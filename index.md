@@ -82,7 +82,7 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 **WHAT'S NEXT:** Now that I have reached this milestone, I need to build the robot and attach all the wires to connect all the parts together in order to achieve my second one. Since I've learned how each of these parts work, it will be easier to improvise if needed.
 
 ## LED Light
-For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash. Since the light has a positive and negative side, it is very important to make sure that the negative node is connected to the ground while the other is connected to power.
+For my first test, I put together a simple circuit to test the LED lights in this set, along with the code to make the light flash. Since the light has a positive and negative side, it is very important to make sure that the negative node is connected to the ground while the other is connected to power. The resistor ensures the voltage isn't too high, as the light doesn't need the 5 volts the circuitboard offers. Too much voltage would result in the light burning out and maybe even wires melting.
   
 ### SCHEMATICS:
 
@@ -113,10 +113,9 @@ This sensor senses obstacles by transmitting IR rays and receives them when a su
 This works similar to the IR sensor, but instead uses ultrasonic frequencies in order to detect how far objects are. This works by emitting sound waves (too high for human ears to pick up, don't worry), and receiving these waves when they are reflected back. The distance from sensor to object is then calculated (in centimeters) based on the distance the sound traveled divided by 2 to account for the sound wave traveling to the object *and* being reflected back. How far the sound wave traveled is based on how long it took for the sound wave to travel there and back, multiplied by the speed of sound constant (~340m/s).
 
   ### SCHEMATICS:
-
    <img src="ultrasonic_bb.jpg" width="388.8" height="400.95" />
    
-   # Starter Project: Tetris Arcade Console
+# Starter Project: Tetris Arcade Console
 
  ![Headstone Image](Tetris_Schematics.png)
 
