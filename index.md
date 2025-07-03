@@ -118,7 +118,7 @@ This works similar to the IR sensor, but instead uses ultrasonic frequencies in 
 
 # Starter Project: Tetris Arcade Console
 
-< img src="Tetris_Schematics.png" />
+<img src="Tetris_Schematics.png" />
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xC3nwDxYMC0?si=Qx-B4X6S6Iq_OcWs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
  
