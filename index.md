@@ -89,18 +89,18 @@ For my first test, I put together a simple circuit to test the LED lights in thi
    <img src="wiring_led1.webp" width="348" height="485.2" />
 
 ## Buzzer
-The next project sought to find out how the buzzer worked. The setup of the two projects, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function). The buzzer also has different polarities, like the LED light, so it's important to check for the same things.
+The next project sought to find out how the buzzer worked. The setup of the two projects, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function). The buzzer also has different polarities, like the LED light, so it's important to check for the same things. 
   
-  ### SCHEMATICS:
+### SCHEMATICS:
 
    <img src="wiring_active_buzzer.webp" width="326.4" height="465.6" />
 
 ## Motor
-While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. It requires an additional motor module to provide a stronger signal because the ARDUINO board does not have enough power for the motor to work. Though it has enough voltage for two motors (as you will see later), I decided to test only one for now. The motor itself had two wires that required a screwdriver in order to be plugged into the motor module. These wires were for the motor's positive and negative currents to control which way the motor would rotate.
+While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. It requires an additional motor module to provide a stronger signal because the ARDUINO board does not have enough power for the motor to work. Though it has enough voltage for two motors (as you will see later), I decided to test only one for now. The motor itself had two wires that required a screwdriver in order to be plugged into the motor module. These wires were for the motor's positive and negative currents to control which way the motor would rotate. 
   
-  ### SCHEMATICS:
+### SCHEMATICS:
 
-   <img src="wheel_motor.webp" width="676.35" height="350.1" />
+  <img src="wheel_motor.webp" width="676.35" height="350.1" />
 
 ## IR Obstacle Avoidance
 This sensor senses obstacles by transmitting IR rays and receives them when a surface (of an object) reflects them back. If the serial monitor was opened, a 1 would correspond with no nearby object, while a 0 would alert me if there was. One of the green lights on the sensor also turns on to show the same thing. It's important to differentiate this light from the power light, which indicates the sensor is working. Both will be labeled accordingly.
@@ -111,8 +111,8 @@ This sensor senses obstacles by transmitting IR rays and receives them when a su
 
 ## Ultrasonic Sensor
 This works similar to the IR sensor, but instead uses ultrasonic frequencies in order to detect how far objects are. This works by emitting sound waves (too high for human ears to pick up, don't worry), and receiving these waves when they are reflected back. The distance from sensor to object is then calculated (in centimeters) based on the distance the sound traveled divided by 2 to account for the sound wave traveling to the object *and* being reflected back. How far the sound wave traveled is based on how long it took for the sound wave to travel there and back, multiplied by the speed of sound constant (~340m/s).
-
-  ### SCHEMATICS:
+  
+### SCHEMATICS:
 
    <img src="ultrasonic_bb.jpg" width="388.8" height="400.95" />
 
