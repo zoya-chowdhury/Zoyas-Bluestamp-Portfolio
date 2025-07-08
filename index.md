@@ -132,7 +132,7 @@ This works similar to the IR sensor, but instead uses ultrasonic frequencies in 
 
 
 # Code
-## First Milestone
+## First Milestone: Testing Components
 ### LED Light
 
 ```c++
@@ -263,7 +263,7 @@ float readSensorData(){
 }
 ```
 
-## Third Milestone
+## Third Milestone: Coding
 ### Human Following Robot Code
 
 ```c++
@@ -376,7 +376,7 @@ void stopMove() {
 ```
 
 ## Modifications
-### Modification #1
+### Modification #1: Detecting Edges
 
 ```c++
 //assigining motor pins
@@ -494,7 +494,7 @@ void stopMove() {
 }
 ```
 
-### Modificaation #2
+### Modificaation #2: Moving Backwards
 
 ```c++
 const int A_1B = 5;
@@ -621,7 +621,7 @@ void moveBackward(int speed) {
 }
 ```
 
-### Modification #3
+### Modification #3: Turning Around
 
 ```c++
 const int A_1B = 5;
@@ -655,7 +655,7 @@ void setup() {
   //IR edge
   pinMode(bottomIR,INPUT);
 
-  //IR behind
+  //MODIFICATION: defining IR behind pins' mode
   pinMode(blIR,INPUT);
   pinMode(brIR,INPUT);
 
@@ -675,11 +675,14 @@ void loop() {
   int left = digitalRead(leftIR);  // 0: Obstructed   1: Empty
   int right = digitalRead(rightIR);
   int edge = digitalRead (bottomIR);
+  //MODIFICATION: assigning motor instructions to interpretation of the back IR Obstacle sensors' information
   int backleft = digitalRead (blIR);
   int backright = digitalRead (brIR);
   int speed = 150;
+  //MODIFICATION: the robot will turn at a faster speed to do a 180 spin in about the same time it takes for the robot to do a normal (forward-facing) turn.
   int spin = 3000;
 
+//MODIFICATION: all the delays are personalized to the instruction because spins require longer delay.
   if (edge){
     stopMove();
     Serial.println(edge);
@@ -695,12 +698,14 @@ void loop() {
   }else if(left&&!right&&!edge){
     turnRight(speed); 
     delay(100);  
-  }else if(left&&right&&!backleft&&backright&&!edge){
+//MODIFICATION: robot will only turn around to the left if that sensor (and the edge sensor) detects something but the rest don't.
+}else if(left&&right&&!backleft&&backright&&!edge){
     spinLeft(spin);
-    delay(600);
+    delay(600);                                      //MODFIICATION: the delay between the sensor detecting something & the motor reacting to this information is longer so the robot can turn all the way around.
+//MODIFICATION: robot will only turn around to the right if that sensor (and the edge sensor) detects something but the rest don't.
   }else if(left&&right&&backleft&&!backright&&!edge){
     spinRight(spin);
-    delay(600);  
+    delay(600);                                      //MODFIICATION: the delay between the sensor detecting something & the motor reacting to this information is longer so the robot can turn all the way around . 
   }else{
     stopMove();
     delay(100);
@@ -761,6 +766,7 @@ void stopMove() {
 
 }
 
+//MODIFICATION: assigning instructions to the motor to turn around; you will notice that the outputs are similar to the normal turning ones; however this is necessary due to the differing speeds & debugging
 void spinLeft(int spin) {
   analogWrite(A_1B, 0);
   analogWrite(A_1A, spin);
@@ -770,6 +776,7 @@ void spinLeft(int spin) {
 
 }
 
+//MODIFICATION: see previous comment
 void spinRight(int spin) {
   analogWrite(A_1B, spin);
   analogWrite(A_1A, 0);
