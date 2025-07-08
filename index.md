@@ -12,9 +12,9 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 
 ![Headstone Image]()-->
   
-# Modifications 
+# [Modifications](#modifications-1) 
 For all of the following schematics, I  utilized a diagram I found on [Sunfounder](https://docs.sunfounder.com/projects/3in1-kit-v2/en/latest/car_project/car_remote_control_plus.html), but I revised it on Google Drawings to illustrate the modifications I made to the robot, its components, and its wiring.
-## Modification #3: Turning Around
+## [Modification #3: Turning Around](modification-3-turning-around-1)
 **DESCRIPTION:** 
 For this modification, I wanted to ensure the robot could detect when there was anything behind it in order turn around towards it. For the sensors, I went with the IR sensors since I'm more familiar with them and their function would be the exact same as the ones on the front. For the coding, after assigning, defining, and interpreting the sensors and their readings, I updated the if/else statement to make the robot turn around if none of the sensors (beside the edge detector) sensed anything. I then added an extra set of motor instructions inspired by the original turning code in order to make the robot spin in roughly the same time it takes for the robot to turn normally. However, I still did extend the sensor interpretation to motor action delay to ensure it could turn completely as needed.
 
@@ -27,7 +27,7 @@ I have yet to decide what I want the next modification to be. However, I have no
 ### Modified Schematics
 <img src="Modification_3.png" />
 
-## Modification #2: Moving Backwards
+## [Modification #2: Moving Backwards](modification-2-moving-bacwkards-1)
 **DESCRIPTION:** For this modification, I coded the robot to move backwards if it got too close to me. There were no changes in the wiring since all I had to do was figure the instructions that would make the wheels move backwards, and then assign this instruction to a certain distance range. I chose this because I noticed the robot would sometimes bump into my hand due to the speed I wanted it to go at. Though I ultimately decided against it, I did try toying with the speed too. (The robot felt slow if I reduced the speed enough to prevent the issue.) 
 
 **CHALLENGES:** The difficulties of this modification was to find the right distance range for moving forward and backwards. I didn't want them to overlap or be too close because the robot would go haywire and looked like it was attacking you. However, as I messed with them, I realized I did not want the ranges to be too far from each other. This would make the robot run more smoothly, and the "attacks" would be softened to appear more like nudges. I ultimately decided 6 cm was a good enough distance from your hand because at this range, you would be almost touchingthe robot. I decided on the forward distance accordingly, given 3cm was too great and 1cm was too small a distane.
