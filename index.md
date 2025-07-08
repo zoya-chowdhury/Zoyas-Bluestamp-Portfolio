@@ -10,7 +10,7 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 ![Headstone Image]()-->
   
 # Modifications 
-For all of the following schematics, I  utilize a diagram from [Sunfounder](https://docs.sunfounder.com/projects/3in1-kit-v2/en/latest/car_project/car_remote_control_plus.html) but revised it on Google Drawings.
+For all of the following schematics, I  utilized a diagram I found on [Sunfounder](https://docs.sunfounder.com/projects/3in1-kit-v2/en/latest/car_project/car_remote_control_plus.html), but I revised it on Google Drawings to illustrate the modifications I made to the robot, its components, and its wiring.
 ## Modification #3: Turning Around
 **DESCRIPTION:** 
 For this modification, I wanted to ensure the robot could detect when there was anything behind it in order turn around towards it. For the sensors, I went with the IR sensors since I'm more familiar with them and their function would be the exact same as the ones on the front. For the coding, after assigning, defining, and interpreting the sensors and their readings, I updated the if/else statement to make the robot turn around if none of the sensors (beside the edge detector) sensed anything. I then added an extra set of motor instructions inspired by the original turning code in order to make the robot spin in roughly the same time it takes for the robot to turn normally. However, I still did extend the sensor interpretation to motor action delay to ensure it could turn completely as needed.
