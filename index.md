@@ -11,10 +11,13 @@ This portfolio follows my progress over the summer as I worked on numerous proje
   
 # Modification #3: Turning Around
 **DESCRIPTION:** 
+For this modification, I wanted to ensure the robot could detect when there was anything behind it in order turn around towards it. For the sensors, I went with the IR sensors since I'm more familiar with them and their function would be the exact same as the ones on the front. For the coding, after assigning, defining, and interpreting the sensors and their readings, I updated the if/else statement to make the robot turn around if none of the sensors (beside the edge detector) sensed anything. I then added an extra set of motor instructions inspired by the original turning code in order to make the robot spin in roughly the same time it takes for the robot to turn normally. However, I still did extend the sensor interpretation to motor action delay to ensure it could turn completely as needed.
 
 **CHALLENGES:** 
+Much of the challenges I faced with this modification actually didn't really have anything to do with it. At first, there were no more female-male wires. As a result, I had to improvise by attaching & taping together a female-female to male-male. However, some of them were too long, so I did have to both sodder some smaller and wait until there were more female-male wires. Though, attaching these wires did cause some new problems: the wires would get crowded, so I had to be careful, and the wires being so crowded resulted in me accidentally moving a motor wiring until its head snapped off. This meant I had to completely detach this motor to re-sodder a new head onto it. (I can't just get a new wire because these wires are attached to the motor.) A challenge I did face when coding the turning around instructions, the car wouldn't turn around enough in the given time no matter how high the speed was.(I found the max to be around 3000.) To solve this, I watched some videos on the code I used. This helped me realize I could extend the delay between the sensors reading a nearby objections and the motors following the given instructions for these scenarios. This meant the robots would turn around for longer, until its sensors later no longer sensed something nearby.
 
 **WHAT'S NEXT:**
+I have yet to decide what I want the next modification to be. However, I have noticed that the motors can be inconsistent when only the battery is powering the robot (as opposed to connecting it to my laptop). I need to figure out if the battery is either supplying too much or not enough power, so I would like to work on fixing this next before modifying the robot any further. 
 
 ## Modified Schematics
 <img src="Modification_3.png" />
