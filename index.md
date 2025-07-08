@@ -623,6 +623,162 @@ void moveBackward(int speed) {
 
 ### Modification #3
 
+```c++
+const int A_1B = 5;
+const int A_1A = 6;
+const int B_1B = 9;
+const int B_1A = 10;
+
+const int bottomIR = 2;
+const int rightIR=7;
+const int leftIR=8;
+//MODIFICATION: assigning pins to back left & back right IR sensors
+const int blIR=11;
+const int brIR=12;
+
+const int trigPin = 3;
+const int echoPin = 4;
+
+void setup() {
+  Serial.begin(9600); 
+
+  //motor
+  pinMode(A_1B, OUTPUT);
+  pinMode(A_1A, OUTPUT);
+  pinMode(B_1B, OUTPUT);
+  pinMode(B_1A, OUTPUT);
+
+  //IR obstacle
+  pinMode(leftIR,INPUT);
+  pinMode(rightIR,INPUT);
+  
+  //IR edge
+  pinMode(bottomIR,INPUT);
+
+  //IR behind
+  pinMode(blIR,INPUT);
+  pinMode(brIR,INPUT);
+
+  //ultrasonic
+  pinMode(echoPin, INPUT);
+  pinMode(trigPin, OUTPUT);
+  Serial.println("Ultrasonic Sensor:");
+
+  
+}
+
+void loop() {
+
+  float distance = readSensorData();
+  delay(100);
+
+  int left = digitalRead(leftIR);  // 0: Obstructed   1: Empty
+  int right = digitalRead(rightIR);
+  int edge = digitalRead (bottomIR);
+  int backleft = digitalRead (blIR);
+  int backright = digitalRead (brIR);
+  int speed = 150;
+  int spin = 3000;
+
+  if (edge){
+    stopMove();
+    Serial.println(edge);
+  }else if (distance>8 && distance<20){
+    moveForward(speed);
+    delay(100);
+  }else if (distance < 6 && distance > 0.5){
+    moveBackward(speed);
+    delay(100);
+  }else if(!left&&right&&!edge){
+    turnLeft(speed);
+    delay(100);
+  }else if(left&&!right&&!edge){
+    turnRight(speed); 
+    delay(100);  
+  }else if(left&&right&&!backleft&&backright&&!edge){
+    spinLeft(spin);
+    delay(600);
+  }else if(left&&right&&backleft&&!backright&&!edge){
+    spinRight(spin);
+    delay(600);  
+  }else{
+    stopMove();
+    delay(100);
+  }
+}
+
+
+float readSensorData() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  float distance = pulseIn(echoPin, HIGH) / 58.00; //Equivalent to (340m/s*1us)/2
+  return distance;
+}
+
+void moveForward(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, speed);
+  analogWrite(B_1B, speed);
+  analogWrite(B_1A, 0);
+  Serial.println("Foward");
+}
+
+void moveBackward(int speed) {
+  analogWrite(A_1B, speed);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, speed);
+    Serial.println("Backward");
+
+}
+
+void turnRight(int speed) {
+  analogWrite(A_1B, speed);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, speed);
+  analogWrite(B_1A, 0);
+    Serial.println("Right");
+
+}
+
+void turnLeft(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, speed);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, speed);
+    Serial.println("Left");
+
+}
+
+void stopMove() {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, 0);
+
+}
+
+void spinLeft(int spin) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, spin);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, spin);
+    Serial.println("spinLeft");
+
+}
+
+void spinRight(int spin) {
+  analogWrite(A_1B, spin);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, spin);
+  analogWrite(B_1A, 0);
+    Serial.println("spinRight");
+
+}
+```
 
 # Bill of Materials
 <!--Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
