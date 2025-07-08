@@ -9,7 +9,8 @@ This portfolio follows my progress over the summer as I worked on numerous proje
 
 ![Headstone Image]()-->
   
-# Modification #3: Turning Around
+# Modifications 
+## Modification #3: Turning Around
 **DESCRIPTION:** 
 For this modification, I wanted to ensure the robot could detect when there was anything behind it in order turn around towards it. For the sensors, I went with the IR sensors since I'm more familiar with them and their function would be the exact same as the ones on the front. For the coding, after assigning, defining, and interpreting the sensors and their readings, I updated the if/else statement to make the robot turn around if none of the sensors (beside the edge detector) sensed anything. I then added an extra set of motor instructions inspired by the original turning code in order to make the robot spin in roughly the same time it takes for the robot to turn normally. However, I still did extend the sensor interpretation to motor action delay to ensure it could turn completely as needed.
 
@@ -19,10 +20,10 @@ Much of the challenges I faced with this modification actually didn't really hav
 **WHAT'S NEXT:**
 I have yet to decide what I want the next modification to be. However, I have noticed that the motors can be inconsistent when only the battery is powering the robot (as opposed to connecting it to my laptop). I need to figure out if the battery is either supplying too much or not enough power, so I would like to work on fixing this next before modifying the robot any further. 
 
-## Modified Schematics
+### Modified Schematics
 <img src="Modification_3.png" />
 
-# Modification #2: Moving Backwards
+## Modification #2: Moving Backwards
 **DESCRIPTION:** For this modification, I coded the robot to move backwards if it got too close to me. There were no changes in the wiring since all I had to do was figure the instructions that would make the wheels move backwards, and then assign this instruction to a certain distance range. I chose this because I noticed the robot would sometimes bump into my hand due to the speed I wanted it to go at. Though I ultimately decided against it, I did try toying with the speed as well. (The robot felt slow if I reduced the speed enough to prevent the issue.) 
 
 **CHALLENGES:** The difficulties of this modification was to find the right distance range for moving forward as well as moving backwards. I didn't want them to overlap or be too close because the robot would go haywire and looked like it was attacking you. However, as I messed with them, I realized I did not want the ranges to be too far from each other. This would make the robot run more smoothly, and the "attacks" would be softened to appear more like nudges. I ultimately decided 6 cm was a good enough distance from your hand because at this range, you would be almost touchingthe robot. I decided on the forward distance accordingly, given 3cm was too great and 1cm was too small a distane.
@@ -30,14 +31,14 @@ I have yet to decide what I want the next modification to be. However, I have no
 **WHAT'S NEXT:** After this, I want to add sensors to the back of the robot and modify it to turn around if it detects anything behind it. This will be slightly trickier because I might need to rewire a lot of the breadboard to make space for the new ground wires these sensors will use
 
 
-# Modification #1: Detecting Edges
+## Modification #1: Detecting Edges
 **DESCRIPTION:** When initially testing the robot's ability to follow me, one thing I would always need to be careful of is to make sure I wouldn not accidentally lead it off the table. As a result, I wanted my first modification to be adding a sensor to ensure it would stop before any cliffs, even if it sensed me. After all, what good is a pet robot with no survival instincts? 
 
 **CHALLENGES:** One of the major challenges was that this modification was completely my own design. This meant I would have to figure out how and what sensor to add and how to code it. What made it even more difficult was that prior to this program, I had no coding or circuit-building experience. This meant any coding I did was based off patterns I had noticed from the code I had already been using. The same was true for the wiring. The sensor I decided to use was the IR sensor, which I tweaked slightly to be facing the ground. For the code, I modified it by instructing the robot to stop if this new sensor did not detect anything below it; the robot could not carry out its steering commands (left, right, forward), even if it sensed something nearby, so long as there was some sort of edge before it. 
 
 **WHAT'S NEXT:** Now that I have completed my first modification, I plan on moving onto more difficult ones. I am unsure which one I would like to beging with, but I have many in mind. Examples include adding sensor to it's back to make it turn around and/or move backward, make it backup when it's too close to something, and making it remote control. I would like to start easy and slowly build myself up, meaning I will likely start with making it back up when it's too close.
 
-## Modified Schematics
+### Modified Schematics
 
 <img src="Modification_1.png" />
 
