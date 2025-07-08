@@ -32,7 +32,7 @@ I have yet to decide what I want the next modification to be. However, I have no
 
 **CHALLENGES:** The difficulties of this modification was to find the right distance range for moving forward and backwards. I didn't want them to overlap or be too close because the robot would go haywire and looked like it was attacking you. However, as I messed with them, I realized I did not want the ranges to be too far from each other. This would make the robot run more smoothly, and the "attacks" would be softened to appear more like nudges. I ultimately decided 6 cm was a good enough distance from your hand because at this range, you would be almost touchingthe robot. I decided on the forward distance accordingly, given 3cm was too great and 1cm was too small a distane.
 
-**WHAT'S NEXT:** After this, I want to add sensors to the back of the robot and modify it to turn around if it detects anything behind it. This will be slightly trickier because I might need to rewire a lot of the breadboard to make space for the new ground wires these sensors will use
+**WHAT'S NEXT:** After this, I want to add sensors to the back of the robot and modify it to turn around if it detects anything behind it. This will be slightly trickier because I might need to rewire a lot of the breadboard to make space for the new ground wires these sensors will use. I will also have to figure out what instructions I have to code for the motor to make the robot turn longer than usual and how the if/else statement needs to be updated.
 
 
 ## Modification #1: Detecting Edges
