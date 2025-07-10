@@ -14,6 +14,16 @@ This portfolio follows my progress over the summer as I worked on numerous proje
   
 # Modifications 
 For all of the following schematics, I  utilized a diagram I found on [Sunfounder](https://docs.sunfounder.com/projects/3in1-kit-v2/en/latest/car_project/car_remote_control_plus.html), but I revised it on Google Drawings to illustrate the modifications I made to the robot, its components, and its wiring.
+## Modification #4: Fixing the Motor Module's Battery Issues
+**DESCRIPTION:** 
+
+**CHALLENGES:** 
+
+**WHAT'S NEXT:** 
+
+### Modified Schematics
+<img src="" />
+
 ## Modification #3: Turning Around
 **DESCRIPTION:** 
 For this modification, I wanted to ensure the robot could react when there was anything behind it in order turn around towards it. I used the IR sensors to accomplish this since I'm more familiar with them, and their function would be the exact same as the ones on the front. For the code (after assigning, defining, and interpreting the sensors and their readings), I updated the if/else statement to make the robot turn around if none of the sensors (beside the edge detector) sensed anything. I then added an extra set of motor instructions inspired by the original turning code--but this time at a faster speed--to make the robot spin in roughly the same time it takes for the robot to turn normally. However, I still did extend the sensor interpretation to motor action delay to ensure it could turn completely as needed.
@@ -794,6 +804,9 @@ void spinRight(int spin) {
 
 }
 ```
+
+### Modification #4:
+
 
 # Bill of Materials
 <!--Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
