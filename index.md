@@ -14,12 +14,15 @@ This portfolio follows my progress over the summer as I worked on numerous proje
   
 # Modifications 
 For all of the following schematics, I  utilized a diagram I found on [Sunfounder](https://docs.sunfounder.com/projects/3in1-kit-v2/en/latest/car_project/car_remote_control_plus.html), but I revised it on Google Drawings to illustrate the modifications I made to the robot, its components, and its wiring.
-## Modification #4: Fixing the Motor Module's Battery Issues
+## Modification #4: Touch Ups
 **DESCRIPTION:** 
+While running tests, I quickly realized there would sometimes be problems with the motor: only the right one would work at times. Upon more troubleshooting, I quickly came to realize this would only occur if the robot was powered by the battery (as opposed to my laptop). I tried a variety of solutions to this problem but ultimately decided to stick with the 9V battery and simply replace it when needed. However, replacing the batter also made me realize that the motors work much more efficiently when functioning at its peak. This meant I had to recallibrate a lot of the code I had setup. This included adding a new speed setting for when the robot is backing up. Essentially, the robot would back up to fast, moving into the range where it should move forward; then, it would move forward and end up too close again. Slowing down the backup speed meant it would back up right into the range where it was meant to stay in place. I did try messing with the distance ranges, but I found this to be the most efficient and simple solution. Another thing I altered was shortening the delay between the back sensors sensing something and the motors reacting to it. This is because with the higher current, the robot would overspin, resulting in a ~270 degree spin rather than 180. While messing with the battery settings, I ended up keeping the new battery on the top side of the robot because it would get less tangled with other wires. Its relative location, however, still remained the same (under the circuitboard).
 
 **CHALLENGES:** 
+The main challenge from this modification was figuring out how to solve the battery issue. Not only did I exhuast every possibility, but each and every possibility required much soldering to even test because each battery pack needed female ends; sometimes, I even needed to solder battery packs together. At first, I thought it was a power issue, so I tried replacing the battery. When the battery still ran out relatively quickly, I tried to power the motor driver and circuitboard differently. However, when I used 4.5-5V to power the motor module, I ran into the same problem; if I used more, there would be too much power, and it didn't work. (I also tested 6 and OV.) Next, I tried increasing the voltage to power everything together, but anything more than 9V would be too much power and the circuitboard would overheat very quickly. (I tested 10.5 and 13.5V. )When I finally tried a power bank, I realized this was actually a current issue rather than a power issue. At its maximum capacity the 9V battery could supply ~800mA, which was enough to power everything. However, it could not sustain this for too long, which is what resulted in only one of the motors working. To solve this, I had three options: use a power bank, use parallel circuits with two batteries, and/or replace the battery frequently. The power banks I had available were too bulky (and would either unbalance the robot or mess with the movement if I were to hold onto it), and a parallel circuit was too unstable given it was basicallly just connecting two batteries together. As a result, I settled for changing the battery more frequently. If I had more time, I might have tested out a smaller power bank.
 
 **WHAT'S NEXT:** 
+Now that I've made sure everything functions at the desired speed and distance, I have time for one more modification. I would like to be able to remotely control the robot. This obviously clashes with the whole "moving to follow you" concept, so I will make sure to add this as a setting to the remote control. This way, I can choose between the two modes.
 
 ### Modified Schematics
 <img src="" />
@@ -690,15 +693,14 @@ void loop() {
   float distance = readSensorData();
   delay(100);
 
-  int left = digitalRead(leftIR);  // 0: Obstructed   1: Empty
+  int left = digitalRead(leftIR);    // 0: Obstructed   1: Empty
   int right = digitalRead(rightIR);
   int edge = digitalRead (bottomIR);
   //MODIFICATION: assigning motor instructions to interpretation of the back IR Obstacle sensors' information
   int backleft = digitalRead (blIR);
   int backright = digitalRead (brIR);
   int speed = 150;
-  //MODIFICATION: the robot will turn at a faster speed to do a 180 spin in about the same time it takes for the robot to do a normal (forward-facing) turn.
-  int spin = 3000;
+  int spin = 3000;                    //MODIFICATION: the robot will turn at a faster speed to do a 180 spin in about the same time it takes for the robot to do a normal (forward-facing) turn.
 
 //MODIFICATION: all the delays are personalized to the instruction because spins require longer delay.
   if (edge){
@@ -707,7 +709,7 @@ void loop() {
   }else if (distance>8 && distance<20){
     moveForward(speed);
     delay(100);
-  }else if (distance < 6 && distance > 0.5){
+  }else if (distance<6){
     moveBackward(speed);
     delay(100);
   }else if(!left&&right&&!edge){
@@ -805,8 +807,487 @@ void spinRight(int spin) {
 }
 ```
 
-### Modification #4:
+### Modification #4: Touch Ups
+```c++
+const int A_1B = 5;
+const int A_1A = 6;
+const int B_1B = 9;
+const int B_1A = 10;
 
+const int bottomIR = 2;
+const int rightIR=7;
+const int leftIR=8;
+const int blIR=11;
+const int brIR=12;
+
+const int trigPin = 3;
+const int echoPin = 4;
+
+void setup() {
+  Serial.begin(9600); 
+
+  //motor
+  pinMode(A_1B, OUTPUT);
+  pinMode(A_1A, OUTPUT);
+  pinMode(B_1B, OUTPUT);
+  pinMode(B_1A, OUTPUT);
+
+  //IR obstacle
+  pinMode(leftIR,INPUT);
+  pinMode(rightIR,INPUT);
+  
+  //IR edge
+  pinMode(bottomIR,INPUT);
+
+  //IR behind
+  pinMode(blIR,INPUT);
+  pinMode(brIR,INPUT);
+
+  //ultrasonic
+  pinMode(echoPin, INPUT);
+  pinMode(trigPin, OUTPUT);
+  Serial.println("Ultrasonic Sensor:");
+
+  
+}
+
+void loop() {
+
+  float distance = readSensorData();
+  delay(100);
+
+  int left = digitalRead(leftIR);    // 0: Obstructed   1: Empty
+  int right = digitalRead(rightIR);
+  int edge = digitalRead (bottomIR);
+  int backleft = digitalRead (blIR);
+  int backright = digitalRead (brIR);
+  int backup = 20;                   // MODIFICATION: significantly slower speed for backing up
+  int speed = 150;
+  int spin = 3000;
+
+  if (edge){
+    stopMove();
+    Serial.println(edge);
+  }else if (distance>8 && distance<20){
+    moveForward(speed);
+    delay(100);
+  }else if (distance < 6 && distance > 0.5){
+    moveBackward(backup);                              // MODIFICATION: reduced speed for backing up
+    delay(100);
+  }else if(!left&&right&&!edge){
+    turnLeft(speed);
+    delay(100);
+  }else if(left&&!right&&!edge){
+    turnRight(speed); 
+    delay(100);  
+  }else if(left&&right&&!backleft&&backright&&!edge){
+    spinLeft(spin);
+    delay(500);                                        // MODIFICATION: lowered delay because it would overshoot the turn with higher current
+  }else if(left&&right&&backleft&&!backright&&!edge){
+    spinRight(spin);
+    delay(500);                                        // MODIFICATION: lowered delay because it would overshoot the turn with higher current  
+  }else{
+    stopMove();
+    delay(100);
+  }
+}
+
+
+float readSensorData() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  float distance = pulseIn(echoPin, HIGH) / 58.00; //Equivalent to (340m/s*1us)/2
+  return distance;
+}
+
+void moveForward(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, speed);
+  analogWrite(B_1B, speed);
+  analogWrite(B_1A, 0);
+  Serial.println("Foward");
+}
+
+// MODIFICATION: reduced speed for backing up
+void moveBackward(int backup) {
+  analogWrite(A_1B, backup);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, backup);
+    Serial.println("Backward");
+
+}
+
+void turnRight(int speed) {
+  analogWrite(A_1B, speed);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, speed);
+  analogWrite(B_1A, 0);
+    Serial.println("Right");
+
+}
+
+void turnLeft(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, speed);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, speed);
+    Serial.println("Left");
+
+}
+
+void stopMove() {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, 0);
+
+}
+
+void spinLeft(int spin) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, spin);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, spin);
+    Serial.println("spinLeft");
+
+}
+
+void spinRight(int spin) {
+  analogWrite(A_1B, spin);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, spin);
+  analogWrite(B_1A, 0);
+    Serial.println("spinRight");
+
+}
+```
+### Modification 5: Remote Control
+```c++
+#include <IRremote.h>           // MODIFICATION: you need to add  IRremote by shirriff to you library in order for the commands for the remote to work
+
+const int IR_RECEIVE_PIN = 11;  // MODIFICATION: assigninig pin for the IR receiver (it uses the pin of the backleft infared sensor, which got moved to analog pin #5 because I ran out of pins, but the IR receiver requires a digital pin)
+
+const int A_1B = 5;
+const int A_1A = 6;
+const int B_1B = 9;
+const int B_1A = 10;
+
+const int bottomIR = 2;
+const int rightIR=7;
+const int leftIR=8;
+const int brIR=12;
+const int blIR=A5;               // MODIFICATION: moved sensor pin to analog pin #5
+
+const int trigPin = 3;
+const int echoPin = 4;
+int speed = 150;
+String flag = "NONE";
+
+
+void setup() {
+  Serial.begin(9600); 
+
+  //motor
+  pinMode(A_1B, OUTPUT);
+  pinMode(A_1A, OUTPUT);
+  pinMode(B_1B, OUTPUT);
+  pinMode(B_1A, OUTPUT);
+
+  //IR obstacle
+  pinMode(leftIR,INPUT);
+  pinMode(rightIR,INPUT);
+  
+  //IR edge
+  pinMode(bottomIR,INPUT);
+
+  //IR behind
+  pinMode(blIR,INPUT);
+  pinMode(brIR,INPUT);
+
+  //ultrasonic
+  pinMode(echoPin, INPUT);
+  pinMode(trigPin, OUTPUT);
+  Serial.println("Ultrasonic Sensor:");
+
+  // IR remote
+  IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK); // MODIFICATION: starts infared receiver
+  Serial.println("REMOTE CONTROL START");               // MODIFICATOIN: for debugging purposes; shows receiver is working
+
+  
+}
+
+
+void loop() {
+// MODIFICATION: decodes remote's signals; for debugging purposes: if button is pressed, serial monitor will show pressed key and then corresponding direction
+  if (IrReceiver.decode()) {
+    //    Serial.println(results.value,HEX);
+    String key = decodeKeyValue(IrReceiver.decodedIRData.command);
+    if (key != "ERROR") {
+      Serial.println(key);
+
+// MODIFICATION: giving instructions for when each button is pressed
+      // MODIFICATION: if + button is pressed, speed goes up by 50
+      if (key == "+") {
+        speed += 50;            
+        Serial.println(speed);
+      // MODIFICATION: if - button is pressed, speed goes down by 50
+      } else if (key == "-") {
+        speed -= 50;            
+        Serial.println(speed);
+      // MODIFICATION: if 2 button is pressed, robot moves forward
+      } else if (key == "2") {
+        moveForward(speed);
+        delay(1000);
+      // MODIFICATION: if 1 button is pressed, robot moves forward to the left
+      } else if (key == "1") {
+        moveLeft(speed);
+      // MODIFICATION: if 3 button is pressed, robot moves forward to the right
+      } else if (key == "3") {
+        moveRight(speed);
+     // MODIFICATION: if 4 button is pressed, robot turns left
+      } else if (key == "4") {
+        turnLeft(speed);
+     // MODIFICATION: if 6 button is pressed, robot turns right
+      } else if (key == "6") {
+        turnRight(speed);
+     // MODIFICATION: if 7 button is pressed, robot moves backward to the left
+      } else if (key == "7") {
+        backLeft(speed);
+     // MODIFICATION: if 9 button is pressed, robot moves back to the right
+      } else if (key == "9") {
+        backRight(speed);
+     // MODIFICATION: if 8 button is pressed, robot moves backwards
+      } else if (key == "8") {
+        moveBackward(speed);
+        delay(1000);
+     // MODIFICATION: if 5 button is pressed, robot stops
+      } else if (key == "5") {
+        flag = "NONE";
+        stopMove();
+     // MODIFICATION: if EQ button is pressed, robot switches to follow mode
+      } else if (key == "EQ") {
+        flag = "FOLW";
+      }
+
+      if (speed >= 255) {
+        speed = 255;
+      }
+      if (speed <= 0) {
+        speed = 0;
+      }
+      delay(500);
+      stopMove();
+    }
+
+    IrReceiver.resume();  // Enable receiving of the next value
+  }
+  if (flag == "FOLW") {
+    following(speed);
+  }
+}
+
+
+float readSensorData() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  float distance = pulseIn(echoPin, HIGH) / 58.00; //Equivalent to (340m/s*1us)/2
+  return distance;
+}
+
+
+void following (int speed) {
+  float distance = readSensorData();
+  delay(100);
+
+  int left = digitalRead(leftIR);  // 0: Obstructed   1: Empty
+  int right = digitalRead(rightIR);
+  int edge = digitalRead (bottomIR);
+  int backleft = digitalRead (blIR);
+  int backright = digitalRead (brIR);
+  int backup = 20;
+  int spin = 3000;
+
+  if (edge){
+    stopMove();
+    Serial.println(edge);
+  }else if (distance>8 && distance<20){
+    moveForward(speed);
+    delay(100);
+  }else if (distance < 6 && distance > 0.5){
+    moveBackward(backup);
+    delay(100);
+  }else if(!left&&right&&!edge){
+    turnLeft(speed);
+    delay(100);
+  }else if(left&&!right&&!edge){
+    turnRight(speed); 
+    delay(100);  
+  }else if(left&&right&&!backleft&&backright&&!edge){
+    spinLeft(spin);
+    delay(550);
+  }else if(left&&right&&backleft&&!backright&&!edge){
+    spinRight(spin);
+    delay(550);  
+  }else{
+    stopMove();
+    delay(100);
+  }
+}
+
+
+// MODIFICATION: decoding: correlates each signal transmitted to a button
+String decodeKeyValue(long result)
+{
+  switch(result){
+    case 0x16:
+      return "0";
+    case 0xC:
+      return "1"; 
+    case 0x18:
+      return "2"; 
+    case 0x5E:
+      return "3"; 
+    case 0x8:
+      return "4"; 
+    case 0x1C:
+      return "5"; 
+    case 0x5A:
+      return "6"; 
+    case 0x42:
+      return "7"; 
+    case 0x52:
+      return "8"; 
+    case 0x4A:
+      return "9"; 
+    case 0x9:
+      return "+"; 
+    case 0x15:
+      return "-"; 
+    case 0x7:
+      return "EQ"; 
+    case 0xD:
+      return "U/SD";
+    case 0x19:
+      return "CYCLE";         
+    case 0x44:
+      return "PLAY/PAUSE";   
+    case 0x43:
+      return "FORWARD";   
+    case 0x40:
+      return "BACKWARD";   
+    case 0x45:
+      return "POWER";   
+    case 0x47:
+      return "MUTE";   
+    case 0x46:
+      return "MODE";       
+    case 0x0:
+      return "ERROR";   
+    default :
+      return "ERROR";
+    }
+}
+
+void moveForward(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, speed);
+  analogWrite(B_1B, speed);
+  analogWrite(B_1A, 0);
+  Serial.println("Foward");
+}
+
+void moveBackward(int backup) {
+  analogWrite(A_1B, backup);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, backup);
+    Serial.println("Backward");
+
+}
+
+void turnRight(int speed) {
+  analogWrite(A_1B, speed);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, speed);
+  analogWrite(B_1A, 0);
+    Serial.println("Right");
+
+}
+
+void turnLeft(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, speed);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, speed);
+    Serial.println("Left");
+
+}
+
+// MODIFICATION: directions for moving forward to the left
+void moveLeft(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, speed);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, 0);
+}
+
+// MODIFICATION: directions for moving forward to the right
+void moveRight(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, speed);
+  analogWrite(B_1A, 0);
+}
+
+// MODIFICATION: directions for moving backward to the left
+void backLeft(int speed) {
+  analogWrite(A_1B, speed);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, 0);
+}
+
+// MODIFICATION: directions for moving backwards to the right
+void backRight(int speed) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, speed);
+}
+
+void stopMove() {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, 0);
+
+}
+
+void spinLeft(int spin) {
+  analogWrite(A_1B, 0);
+  analogWrite(A_1A, spin);
+  analogWrite(B_1B, 0);
+  analogWrite(B_1A, spin);
+    Serial.println("spinLeft");
+
+}
+
+void spinRight(int spin) {
+  analogWrite(A_1B, spin);
+  analogWrite(A_1A, 0);
+  analogWrite(B_1B, spin);
+  analogWrite(B_1A, 0);
+    Serial.println("spinRight");
+
+}
+```
 
 # Bill of Materials
 <!--Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
