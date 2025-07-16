@@ -14,7 +14,22 @@ This portfolio follows my progress over the summer as I worked on numerous proje
   
 # Modifications 
 For all of the following schematics, I  utilized a diagram I found on [Sunfounder](https://docs.sunfounder.com/projects/3in1-kit-v2/en/latest/car_project/car_remote_control_plus.html), but I revised it on Google Drawings to illustrate the modifications I made to the robot, its components, and its wiring.
-## Modification #4: Touch Ups
+
+## Modification #5: Remote Control
+**DESCRIPTION:**
+Although the main premise of my project was that the robot would be able to follow you, I thought it would be cool if it was also remotely controlled. After modifying the code I found on [Sunfounder](https://docs.sunfounder.com/projects/3in1-kit-v2/en/latest/car_project/car_remote_control_plus.html), this robot was able to be steered in any direction; change its speed in the 0-255% range; switch to the following mode; and, of course, stop. The remote worked by transmitting IR signals that are each correlated to a certain button being pressed (assigned by code). The IR receiver then picks up these signals and, like the other sensors, the robot will execute commands assigned to each button as instructed. A cool way to test the remote is actually sending signals without the serial monitor is to point it at one of the obstacle avoidance sensors; once you press a button, the sensor's receiver will get it and the light indicating that it picked up a signal will turn on. (It's usually used to receive trasmitted waves reflected back by an object but it can receive any IR signal.)   
+
+**CHALLENGES:**
+The main challenge came from never working with a remote control or this type of IR receiver, so I had to do some testing to understand it first. One issue I realized when testing is that it could only function when its signal pin is connected to a digital pin on the board. However, I had used up all the digital pins on the board, so I resolved this to moving one of the IR sensor output pins to an analog pin. Thankfully, you don't have to change anything in the code, besides redefining the pin it's connected to. I was initially worries about the ultrasonic sensor or wires being in the way of the IR signals, but those proved to not be a problem at all.
+
+**WHAT'S NEXT:**
+I've finally finished all my modifications, and it's time to wrap up my project. All I have to left is touch up my documentation and prepare for the presentation of my robot.
+
+### Modified Schematics
+<img src=""/>
+
+
+## Modification #4: Touchups
 **DESCRIPTION:** 
 While running tests, I quickly realized there would sometimes be problems with the motor: only the right one would work at times. Upon more troubleshooting, I quickly came to realize this would only occur if the robot was powered by the battery (as opposed to my laptop). I tried a variety of solutions to this problem but ultimately decided to stick with the 9V battery and simply replace it when needed. However, replacing the batter also made me realize that the motors work much more efficiently when functioning at its peak. This meant I had to recallibrate a lot of the code I had setup. This included adding a new speed setting for when the robot is backing up. Essentially, the robot would back up to fast, moving into the range where it should move forward; then, it would move forward and end up too close again. Slowing down the backup speed meant it would back up right into the range where it was meant to stay in place. I did try messing with the distance ranges, but I found this to be the most efficient and simple solution. Another thing I altered was shortening the delay between the back sensors sensing something and the motors reacting to it. This is because with the higher current, the robot would overspin, resulting in a ~270 degree spin rather than 180. While messing with the battery settings, I ended up keeping the new battery on the top side of the robot because it would get less tangled with other wires. Its relative location, however, still remained the same (under the circuitboard).
 
@@ -24,8 +39,6 @@ The main challenge from this modification was figuring out how to solve the batt
 **WHAT'S NEXT:** 
 Now that I've made sure everything functions at the desired speed and distance, I have time for one more modification. I would like to be able to remotely control the robot. This obviously clashes with the whole "moving to follow you" concept, so I will make sure to add this as a setting to the remote control. This way, I can choose between the two modes.
 
-### Modified Schematics
-<img src="" />
 
 ## Modification #3: Turning Around
 **DESCRIPTION:** 
@@ -40,10 +53,11 @@ I have yet to decide what I want the next modification to be. However, I have no
 ### Modified Schematics
 <img src="Modification_3.png" />
 
+
 ## Modification #2: Moving Backwards
 **DESCRIPTION:** For this modification, I coded the robot to move backwards if it got too close to me. There were no changes in the wiring since all I had to do was figure the instructions that would make the wheels move backwards, and then assign this instruction to a certain distance range. I chose this because I noticed the robot would sometimes bump into my hand due to the speed I wanted it to go at. The instruction for moving backwards the opposite of moving forward: the right motor's positive and the left motor's negative current would work while the other currents' output would be 0. Due to the updated if/else statement, the robot would execute this instruction if the ultrasonic sensor detected something within 6 cm of it. Though I ultimately decided against it, I did try toying with the speed too. (The robot felt slow if I reduced the speed enough to prevent the issue.) 
 
-**CHALLENGES:** The difficulties of this modification was to find the right distance range for moving forward and backwards. I did not want them to overlap or be too close because the robot would go haywire and looked like it was attacking you. However, as I messed with them, I realized I did not want the ranges to be too far from each other. This would make the robot run more smoothly, and the "attacks" would be softened to appear more like nudges. I ultimately decided 6 cm was a good enough distance from your hand because at this range, you would be almost touchingthe robot. I decided on the forward distance accordingly, given 3cm was too great and 1cm was too small a distane.
+**CHALLENGES:** The difficulties of this modification was to find the right distance range for moving forward and backwards. I did not want them to overlap or be too close because the robot would go haywire and looked like it was attacking you. However, as I messed with them, I realized I did not want the ranges to be too far from each other. This would make the robot run more smoothly, and the "attacks" would be softened to appear more like nudges. I ultimately decided 6 cm was a good enough distance from your hand because at this range, you would be almost touching the robot. I decided on the forward distance accordingly, given 3cm was too great and 1cm was too small a distane.
 
 **WHAT'S NEXT:** After this, I want to add sensors to the back of the robot and modify it to turn around if it detects anything behind it. This will be slightly trickier because I might need to rewire a lot of the breadboard to make space for the new ground wires these sensors will use. I will also have to figure out what instructions I have to code for the motor to make the robot turn longer than usual and how the if/else statement needs to be updated.
 
@@ -124,7 +138,7 @@ While having the same fundamentals as the previous projects, this was slightly m
   <img src="wheel_motor.webp" width="676.35" height="350.1" />
 
 ## IR Obstacle Avoidance
-This sensor senses obstacles by transmitting IR rays and receives them when a surface (of an object) reflects them back. If the serial monitor was opened, a 1 would correspond with no nearby object, while a 0 would alert me if there was. One of the green lights on the sensor also turns on to show the same thing. It is important to differentiate this light from the power light, which indicates the sensor is working. Both will be labeled accordingly.
+This sensor senses obstacles by transmitting infrared (IR) rays and receives them when a surface (of an object) reflects them back. If the serial monitor was opened, a 1 would correspond with no nearby object, while a 0 would alert me if there was. One of the green lights on the sensor also turns on to show the same thing. It is important to differentiate this light from the power light, which indicates the sensor is working. Both will be labeled accordingly.
   
 ### SCHEMATICS:
 
@@ -807,7 +821,7 @@ void spinRight(int spin) {
 }
 ```
 
-### Modification #4: Touch Ups
+### Modification #4: Touchups
 ```c++
 const int A_1B = 5;
 const int A_1A = 6;
