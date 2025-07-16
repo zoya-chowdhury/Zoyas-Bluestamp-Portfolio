@@ -26,7 +26,7 @@ The main challenge came from never working with a remote control or this type of
 I've finally finished all my modifications, and it's time to wrap up my project. All I have to left is touch up my documentation and prepare for the presentation of my robot.
 
 ### Modified Schematics
-<img src=""/>
+<img src="Modification_5.png"/>
 
 
 ## Modification #4: Touchups
