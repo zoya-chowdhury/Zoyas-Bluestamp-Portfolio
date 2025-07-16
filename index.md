@@ -668,8 +668,8 @@ const int bottomIR = 2;
 const int rightIR=7;
 const int leftIR=8;
 //MODIFICATION: assigning pins to back left & back right IR sensors
-const int blIR=11;
-const int brIR=12;
+const int brIR=11;
+const int blIR=12;
 
 const int trigPin = 3;
 const int echoPin = 4;
@@ -831,8 +831,8 @@ const int B_1A = 10;
 const int bottomIR = 2;
 const int rightIR=7;
 const int leftIR=8;
-const int blIR=11;
-const int brIR=12;
+const int blrR=11;
+const int blIR=12;
 
 const int trigPin = 3;
 const int echoPin = 4;
