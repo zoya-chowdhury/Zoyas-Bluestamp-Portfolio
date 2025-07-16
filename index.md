@@ -1030,41 +1030,41 @@ void loop() {
       Serial.println(key);
 
 // MODIFICATION: giving instructions for when each button is pressed
-      // MODIFICATION: if + button is pressed, speed goes up by 50
+      // If + button is pressed, speed goes up by 50
       if (key == "+") {
         speed += 50;            
         Serial.println(speed);
-      // MODIFICATION: if - button is pressed, speed goes down by 50
+      // If - button is pressed, speed goes down by 50
       } else if (key == "-") {
         speed -= 50;            
         Serial.println(speed);
-      // MODIFICATION: if 2 button is pressed, robot moves forward
+      // If 2 button is pressed, robot moves forward
       } else if (key == "2") {
         moveForward(speed);
         delay(1000);
-      // MODIFICATION: if 1 button is pressed, robot moves forward to the left
+      // If 1 button is pressed, robot moves forward to the left
       } else if (key == "1") {
         moveLeft(speed);
-      // MODIFICATION: if 3 button is pressed, robot moves forward to the right
+      // If 3 button is pressed, robot moves forward to the right
       } else if (key == "3") {
         moveRight(speed);
-     // MODIFICATION: if 4 button is pressed, robot turns left
+     // If 4 button is pressed, robot turns left
       } else if (key == "4") {
         turnLeft(speed);
-     // MODIFICATION: if 6 button is pressed, robot turns right
+     // If 6 button is pressed, robot turns right
       } else if (key == "6") {
         turnRight(speed);
-     // MODIFICATION: if 7 button is pressed, robot moves backward to the left
+     // If 7 button is pressed, robot moves backward to the left
       } else if (key == "7") {
         backLeft(speed);
-     // MODIFICATION: if 9 button is pressed, robot moves back to the right
+     // If 9 button is pressed, robot moves back to the right
       } else if (key == "9") {
         backRight(speed);
-     // MODIFICATION: if 8 button is pressed, robot moves backwards
+     // If 8 button is pressed, robot moves backwards
       } else if (key == "8") {
         moveBackward(speed);
         delay(1000);
-     // MODIFICATION: if 5 button is pressed, robot stops
+     // If 5 button is pressed, robot stops
       } else if (key == "5") {
         flag = "NONE";
         stopMove();
@@ -1073,6 +1073,7 @@ void loop() {
         flag = "FOLW";
       }
 
+      // setting maximum (255) and minimum (0) speed; this is because the ability to change speed has been added, so this will ensure you don't go above or below these numbers when messing with it
       if (speed >= 255) {
         speed = 255;
       }
@@ -1083,7 +1084,6 @@ void loop() {
       stopMove();
     }
 
-  // MODIFICATION: if 
     IrReceiver.resume();  // Enable receiving of the next value
   }
   if (flag == "FOLW") {
