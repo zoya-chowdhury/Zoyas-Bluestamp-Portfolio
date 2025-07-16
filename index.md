@@ -1068,7 +1068,7 @@ void loop() {
       } else if (key == "5") {
         flag = "NONE";
         stopMove();
-     // MODIFICATION: if EQ button is pressed, robot switches to follow mode
+     // If EQ button is pressed, robot switches to follow mode
       } else if (key == "EQ") {
         flag = "FOLW";
       }
@@ -1083,6 +1083,7 @@ void loop() {
       stopMove();
     }
 
+  // MODIFICATION: if 
     IrReceiver.resume();  // Enable receiving of the next value
   }
   if (flag == "FOLW") {
