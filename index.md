@@ -25,6 +25,7 @@ I have finally finished all my modifications, and it is time to wrap up my proje
 
 ### Modified Schematics
 <img src="Modification_5.png"/> 
+
 ### Remote Control
 <img src="Remote.png" width="502" height="476" />
 
