@@ -3,7 +3,7 @@ This portfolio documents my progress over the summer as I worked on a series of 
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
-| Zoya C. | Mission San Jose High School | Electrical Engineering | Incoming Junior
+| Zoya C. | Mission San Jose High School | Mechanical Engineering, Electrical Engineering | Incoming Junior
 
 <!--Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.c++) if you need help.**
 
