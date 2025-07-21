@@ -24,7 +24,7 @@ The main challenge came from never working with a remote control or this type of
 I have finally finished all my modifications, and it is time to wrap up my project. All I have to left is touch up my documentation and prepare for the presentation of my robot.
 
 ### Modified Schematics
-<img src="Modification_5.png"/> <img src="Remote.png"/>
+<img src="Modification_5.png"/> <img src="Remote.png" width="1004" height="902" />
 
 
 ## Modification #4: Touchups
@@ -74,7 +74,7 @@ I have yet to decide what I want the next modification to be. However, I have no
 
 # Final Milestone: Coding
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6Max72kHgqk?si=7P0bIYm07S1jpWlh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe ="560" height="315" src="https://www.youtube.com/embed/6Max72kHgqk?si=7P0bIYm07S1jpWlh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 **DESCRIPTION:** To wrap up this project, I had to implement the code in order to make it follow my hand. I had to make sure all the pins matched up and all the signals were read and interpreted properly. I also had to make sure all the components were properly defined, interpreted, assigned, etc. The directions to follow my hand from the front was based on ultrasonic sensor's readings. If it detected something within 5-20 cm of the sensor, it would move towards it until it was out of range. It could also turn left or right to face me if either of the IR sensors detected something near it (and then it would move forward based on the previous instructions for the ultrasonic sensor readings).
 
@@ -87,7 +87,7 @@ I have yet to decide what I want the next modification to be. However, I have no
 
 # Second Milestone: Wiring/Construction
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_HQk5TEfqqU?si=H7X6gfRgMYlOd3nm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe ="560" height="315" src="https://www.youtube.com/embed/_HQk5TEfqqU?si=H7X6gfRgMYlOd3nm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 **DESCRIPTION:** To reach this milestone, I had to put the actual robot together. This consisted mostly of screwing parts to the robot's acrylic board and then wiring all of them to the breadboard and/or the ADRUINO circuitboard I attached. SunFounder provided a [tutorial to build the robot](https://docs.SunFounder.com/projects/3in1-kit-v2/en/latest/car_project/car_assemble.html), as well as the [Follow You Hand project's schematics](https://docs.SunFounder.com/projects/3in1-kit-v2/en/latest/car_project/car_following.html). To me, this project has really helped made coding and robotics less intimidating. It has showed me how simple it can be when I try breaking all the processes down into smaller, more digestable steps. 
 
@@ -106,7 +106,7 @@ I have yet to decide what I want the next modification to be. However, I have no
 
 # First Milestone: Testing Components
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/CAFV6XYA0hU?si=x979owAFFp9I4_uh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe ="560" height="315" src="https://www.youtube.com/embed/CAFV6XYA0hU?si=x979owAFFp9I4_uh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 **DESCRIPTION:** My intensive project is a robot on wheels that can follow people around. I am relatively inexperienced in the robotics field, so I began my project by testing several parts and their corresponding programs for my first milestone in order to gain a greater understanding of them. I did this with the help of schematics, codes, and video instructions from [SunFounder](https://docs.SunFounder.com/projects/3in1-kit-v2/en/latest/Arduino_video_course/Arduino_video_course.html). I began by watching several videos on the Arduino circuitboard and how its software runs before I moved onto more hands-on projects, using the Arduino R3 circuitboard with jumper wires for all of them.
 
