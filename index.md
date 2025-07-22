@@ -55,7 +55,7 @@ I have yet to decide what I want the next modification to be. However, I have no
 <img src="Modification_3.png" />
 
 
-## Modification #2: Moving Backwards
+## Modification #2: Backing Up
 **DESCRIPTION:** For this modification, I coded the robot to move backwards if it got too close to me. There were no changes in the wiring since all I had to do was figure the instructions that would make the wheels move backwards, and then assign this instruction to a certain distance range. I chose this because I noticed the robot would sometimes bump into my hand due to the speed I wanted it to go at. The instruction for moving backwards the opposite of moving forward: the right motor's positive and the left motor's negative current would work while the other currents' output would be 0. Due to the updated if/else statement, the robot would execute this instruction if the ultrasonic sensor detected something within 6 cm of it. Though I ultimately decided against it, I did try toying with the speed too. (The robot felt slow if I reduced the speed enough to prevent the issue.) 
 
 **CHALLENGES:** The difficulties of this modification was to find the right distance range for moving forward and backwards. I did not want them to overlap or be too close because the robot would go haywire and looked like it was attacking me. However, as I messed with them, I realized I did not want the ranges to be too far from each other. This would make the robot run more smoothly, and the "attacks" would be softened to appear more like nudges. I ultimately decided 6 cm was a good enough distance from my hand because at this range, the robot would almost be touching me. I decided on the forward distance accordingly, given 3cm was too great and 1cm was too small a distance.
@@ -530,7 +530,7 @@ void stopMove() {
 }
 ```
 
-### Modificaation #2: Moving Backwards
+### Modificaation #2: Backing Up
 
 ```c++
 const int A_1B = 5;
