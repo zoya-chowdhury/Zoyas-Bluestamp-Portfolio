@@ -300,7 +300,7 @@ float readSensorData(){
 ```
 
 ## Third Milestone: Coding
-### Following Code
+### Following
 
 ```c++
 //assigining motor pins
