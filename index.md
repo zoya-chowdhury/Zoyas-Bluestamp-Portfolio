@@ -7,7 +7,7 @@ This portfolio documents my progress over the summer as I worked on a series of 
 
 <!--Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.c++) if you need help.**-->
 
-![Headstone Image](IMG_6953.heic)
+![Headstone Image](jhkjh.png)
   
 # Modifications 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/l95S_1xF4oE?si=0q1akrfpHWUPkLec" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
