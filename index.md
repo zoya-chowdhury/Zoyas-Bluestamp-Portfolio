@@ -31,6 +31,7 @@ Figure 2
 
 ### Remote Control
 <img src="Remote.png" width="502" height="476" />
+
 Figure 3
 
 
@@ -130,6 +131,7 @@ For my first test, I put together a simple circuit to test the LED lights in thi
 ### SCHEMATICS:
 
    <img src="wiring_led1.webp" width="348" height="485.2" />
+   
    Figure 7
 
 ## Buzzer
@@ -138,6 +140,7 @@ The next project sought to find out how the buzzer worked. The setup of this and
 ### SCHEMATICS:
 
   <img src="wiring_active_buzzer.webp" width="326.4" height="465.6" />
+  
   Figure 8
 
 ## Motor
@@ -146,6 +149,7 @@ While having the same fundamentals as the previous projects, this was slightly m
 ### SCHEMATICS:
 
   <img src="wheel_motor.webp" width="676.35" height="350.1" />
+  
   Figure 9
 
 ## IR Obstacle Avoidance
@@ -154,6 +158,7 @@ This sensor senses obstacles by transmitting infrared (IR) rays and receives the
 ### SCHEMATICS:
 
   <img src="detect_the_obstacle_bb.jpg" width="621" height="261.9" />
+  
   Figure 10
 
 ## Ultrasonic Sensor
@@ -162,6 +167,7 @@ This works similar to the IR sensor, but instead uses ultrasonic frequencies in 
 ### SCHEMATICS:
 
   <img src="ultrasonic_bb.jpg" width="388.8" height="400.95" />
+  
   Figure 11
 
 # Starter Project: Tetris Arcade Console
