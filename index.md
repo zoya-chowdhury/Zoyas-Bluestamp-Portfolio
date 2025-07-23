@@ -169,6 +169,7 @@ This works similar to the IR sensor, but instead uses ultrasonic frequencies in 
 <img src="Stacker_Schematics.png" />
 Figure 12
 
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xC3nwDxYMC0?si=Qx-B4X6S6Iq_OcWs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
  
 **DESCRIPTION:** In preparation for the hardware aspects of my intensive projects, I warmed up by putting together a retro arcade console designed to play numerous games of tetris. It can be powered by either batteries or a laptop by connecting it via the USB socket. A game can then be started by turning on the red power button and pressing the yellow button labeled with a square. The game is displayed on the dot matrix, and the pieces can be controlled by the four buttons labeled with arrows. While playing, the digital tube keeps track of the score, and the buzzer provides sound effects/music. The game can be ended with the button labeled X, pressing the power button, or disconnecting the power source. Every component was soldered on, and the non-electrical parts were screwed together.
