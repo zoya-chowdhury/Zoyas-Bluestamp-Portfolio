@@ -1029,7 +1029,7 @@ void setup() {
   Serial.println("Ultrasonic Sensor:");
 
   // IR remote
-  IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK); // MODIFICATION: starts infared receiver; circuitboard's LED light (connected to pin 13) will light up to indicate when receiver picks up IR signal
+  IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK); // MODIFICATION: starts infared receiver; circuitboard's LED light (connected to pin 13) will light up to indicate when receiver picks up IR signal (for debugging purposes)
   Serial.println("REMOTE CONTROL START");               // MODIFICATOIN: for debugging purposes; shows receiver is working
 
   
