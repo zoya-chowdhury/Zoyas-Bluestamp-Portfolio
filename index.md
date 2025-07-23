@@ -8,6 +8,7 @@ This portfolio documents my progress over the summer as I worked on a series of 
 <!--Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.c++) if you need help.**-->
 
 ![Headstone Image](jhkjh.png)
+
 Figure 1
   
 # Modifications 
