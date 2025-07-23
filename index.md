@@ -8,6 +8,7 @@ This portfolio documents my progress over the summer as I worked on a series of 
 <!--Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.c++) if you need help.**-->
 
 ![Headstone Image](jhkjh.png)
+Figure 1
   
 # Modifications 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/l95S_1xF4oE?si=0q1akrfpHWUPkLec" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -25,9 +26,11 @@ I have finally finished all my modifications, and it is time to wrap up my proje
 
 ### Modified Schematics
 <img src="Modification_5.png"/> 
+Figure 2
 
 ### Remote Control
 <img src="Remote.png" width="502" height="476" />
+Figure 3
 
 
 ## Modification #4: Touchups
@@ -53,6 +56,7 @@ I have yet to decide what I want the next modification to be. However, I have no
 
 ### Modified Schematics
 <img src="Modification_3.png" />
+Figure 4
 
 
 ## Modification #2: Backing Up
@@ -73,6 +77,7 @@ I have yet to decide what I want the next modification to be. However, I have no
 ### Modified Schematics
 
 <img src="Modification_1.png" />
+Figure 5
 
 
 # Final Milestone: Coding
@@ -105,6 +110,7 @@ I have yet to decide what I want the next modification to be. However, I have no
 <!--Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser.-->
 
 ![Headstone Image](Robot_Schematics.png)
+Figure 6
 
 
 # First Milestone: Testing Components
@@ -123,6 +129,7 @@ For my first test, I put together a simple circuit to test the LED lights in thi
 ### SCHEMATICS:
 
    <img src="wiring_led1.webp" width="348" height="485.2" />
+   Figure 7
 
 ## Buzzer
 The next project sought to find out how the buzzer worked. The setup of this and the LED project, as well as the coding, was very similar. The main differences could be found in the lack of a resistor (and obviously the component's function). The buzzer also has different polarities, like the LED light, so it is important to check for the same things. The buzzer works by powering two electrodes, which causes the piezoelectric material in a disk within it to deform. When this disk moves, it produces sound. 
@@ -130,6 +137,7 @@ The next project sought to find out how the buzzer worked. The setup of this and
 ### SCHEMATICS:
 
   <img src="wiring_active_buzzer.webp" width="326.4" height="465.6" />
+  Figure 8
 
 ## Motor
 While having the same fundamentals as the previous projects, this was slightly more complicated as there were more componenents to the motor to put together. It requires an additional motor module to provide a stronger signal because the Arduino board does not have enough power for the motor to work. Though it has enough voltage for two motors (as you will see later), I decided to test only one for now. The motor itself had two wires that required a screwdriver in order to be plugged into the motor module. These wires were for the motor's positive and negative currents to control which way the motor would rotate.
@@ -137,6 +145,7 @@ While having the same fundamentals as the previous projects, this was slightly m
 ### SCHEMATICS:
 
   <img src="wheel_motor.webp" width="676.35" height="350.1" />
+  Figure 9
 
 ## IR Obstacle Avoidance
 This sensor senses obstacles by transmitting infrared (IR) rays and receives them when a surface (of an object) reflects them back. If the serial monitor was opened, a 1 would correspond with no nearby object, while a 0 would alert me if there was. One of the green lights on the sensor also turns on to show the same thing. Due to the binary nature of this component, the it is coded with Digital Write. Digital Write outputs a digital signal to a digital pin and has only two states: 0 (0V) or 1 (5V). It is important to differentiate this light from the power light, which indicates the sensor is working. Both will be labeled accordingly.
@@ -144,6 +153,7 @@ This sensor senses obstacles by transmitting infrared (IR) rays and receives the
 ### SCHEMATICS:
 
   <img src="detect_the_obstacle_bb.jpg" width="621" height="261.9" />
+  Figure 10
 
 ## Ultrasonic Sensor
 This works similar to the IR sensor, but instead uses ultrasonic frequencies in order to detect how far objects are. This works by emitting sound waves (too high for human ears to pick up, don't worry), and receiving these waves when they are reflected back. The distance from sensor to object is then calculated (in centimeters) based on the distance the sound traveled divided by 2 to account for the sound wave traveling to the object *and* being reflected back. How far the sound wave traveled is based on how long it took for the sound wave to travel there and back, multiplied by the speed of sound constant (~340m/s).
@@ -151,10 +161,12 @@ This works similar to the IR sensor, but instead uses ultrasonic frequencies in 
 ### SCHEMATICS:
 
   <img src="ultrasonic_bb.jpg" width="388.8" height="400.95" />
+  Figure 11
 
 # Starter Project: Tetris Arcade Console
 
 <img src="Stacker_Schematics.png" />
+Figure 12
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xC3nwDxYMC0?si=Qx-B4X6S6Iq_OcWs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
  
